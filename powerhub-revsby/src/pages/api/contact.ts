@@ -46,7 +46,7 @@ export const POST: APIRoute = async ({ request, locals }) => {
 
   const apiKey = pick('RESEND_API_KEY') || pick('powerhub-resend-key') || pick('api-revesby');
   const to = pick('CONTACT_TO') || 'powerhub-electrical@proton.me';
-  const from = pick('RESEND_FROM') || 'Powerhub Electrical Revesby Website <onboarding@resend.dev>';
+  const from = pick('RESEND_FROM') || 'Powerhub Electrical - Revesby <onboarding@resend.dev>';
 
   if (!apiKey) {
     return json({ ok: false, error: 'The enquiry service is not set up yet. Please call us on 0400 332 331.' }, 500);
