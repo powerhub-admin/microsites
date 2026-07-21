@@ -59,8 +59,10 @@ const bullets = [
         <div class="absolute inset-0 bg-gradient-to-r from-brand-bg via-brand-bg/10 to-transparent"></div>
       </div>
       <!-- overlapping smaller panel -->
-      <div class="absolute -bottom-8 left-2 w-52 overflow-hidden border-2 border-brand-accent shadow-2xl shadow-black/60" style="clip-path: polygon(10% 0, 100% 0, 90% 100%, 0 100%);">
-        <img src="/images/powerhub/services/appliance-installation.webp" alt="Powerhub Electrical appliance installation in a St Ives home" class="h-40 w-full object-cover" />
+      <div class="absolute -bottom-8 left-2 w-52 bg-brand-accent p-0.5 shadow-2xl shadow-black/60" style="clip-path: polygon(10% 0, 100% 0, 90% 100%, 0 100%);">
+        <div class="overflow-hidden" style="clip-path: polygon(10% 0, 100% 0, 90% 100%, 0 100%);">
+          <img src="/images/powerhub/services/appliance-installation.webp" alt="Powerhub Electrical appliance installation in a St Ives home" class="h-40 w-full object-cover" />
+        </div>
       </div>
       <span class="pulse-glow absolute right-6 top-8 inline-flex items-center gap-2 bg-brand-accent px-4 py-2 font-heading text-sm font-bold text-brand-bg" style="clip-path: polygon(8% 0, 100% 0, 92% 100%, 0 100%);">
         <Bolt class="h-4 w-4" /> 24/7 Emergency

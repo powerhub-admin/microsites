@@ -66,8 +66,10 @@ const gallery = service.img2 ? [service.img, service.img2] : [service.img];
         <div class="reveal" style="transition-delay:120ms;">
           <div class="grid gap-4">
             {gallery.map((g, i) => (
-              <div class={`relative overflow-hidden border-2 border-brand-secondary/25 shadow-2xl shadow-black/60 ${i === 0 ? '' : 'ml-8'}`} style="clip-path: polygon(0 0, 100% 0, 100% 90%, 92% 100%, 0 100%);">
-                <img src={g} alt={service.alt} class="h-full w-full object-cover" loading="lazy" />
+              <div class={`relative bg-brand-secondary/25 p-0.5 shadow-2xl shadow-black/60 ${i === 0 ? '' : 'ml-8'}`} style="clip-path: polygon(0 0, 100% 0, 100% 90%, 92% 100%, 0 100%);">
+                <div class="h-full w-full overflow-hidden" style="clip-path: polygon(0 0, 100% 0, 100% 90%, 92% 100%, 0 100%);">
+                  <img src={g} alt={service.alt} class="h-full w-full object-cover" loading="lazy" />
+                </div>
               </div>
             ))}
           </div>

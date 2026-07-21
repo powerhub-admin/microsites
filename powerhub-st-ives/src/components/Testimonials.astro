@@ -2,9 +2,9 @@
 import Bolt from './Bolt.astro';
 
 const reviews = [
-  { quote: "Brian came out same day when our switchboard tripped and wouldn't reset. He found the fault, explained it clearly, and the price was exactly what he quoted. Genuinely trustworthy.", name: 'Sarah M.', suburb: 'St Ives' },
-  { quote: "We had the whole house rewired over a few weeks and never had to move out. Tidy, on time, and every question answered. The free safety inspection picked up things others missed.", name: 'David & Anne', suburb: 'Pymble' },
-  { quote: "Replaced our old smoke alarms and added safety switches. Professional from the first call, and lovely to deal with. We've recommended Powerhub to half the street.", name: 'Julie R.', suburb: 'Turramurra' },
+  { quote: "Brian did an amazing job for us at our 1 bedroom apartment. We had ceiling fans installed, powerpoints added and all was professionally done within half a day. Will not hesitate to recommend Brian for any electrical works.", name: 'Sarah Yong' },
+  { quote: "Brian was so helpful and solved a potentially dangerous issue (a melted fuse box) quickly and with a great deal of care. He was clear with his communication, incredibly knowledgeable, and super responsive. I cannot recommend Powerhub Electrical more.", name: 'Georgia Mason' },
+  { quote: "Highly recommend Brian & his team. His workmanship is outstanding as is his communication. Nothing was too much trouble and the jobs were completed in a very timely manner. Will definitely use again!", name: 'Kellie Scott' },
 ];
 ---
 <section class="relative overflow-hidden bg-brand-surface py-24">
@@ -31,7 +31,7 @@ const reviews = [
           </div>
           <blockquote class="font-body text-base leading-relaxed text-brand-text">"{r.quote}"</blockquote>
           <figcaption class="mt-6 border-t border-white/10 pt-4 font-heading text-sm font-bold uppercase tracking-wide text-brand-secondary">
-            {r.name}<span class="ml-2 font-body text-xs font-normal normal-case text-brand-muted">{r.suburb}</span>
+            {r.name}{r.suburb && <span class="ml-2 font-body text-xs font-normal normal-case text-brand-muted">{r.suburb}</span>}
           </figcaption>
         </figure>
       ))}

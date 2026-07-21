@@ -4,15 +4,15 @@ const suburbs = ['St Ives','St Ives Chase','Pymble','West Pymble','Gordon','Kill
 <section id="areas" class="relative overflow-hidden bg-brand-surface py-24">
   <div class="mx-auto grid max-w-7xl items-start gap-12 px-5 sm:px-8 lg:grid-cols-[0.9fr_1.1fr] lg:gap-16 lg:px-8">
     <div class="reveal relative">
-      <div class="aspect-[4/5] overflow-hidden border-2 border-brand-secondary/25 shadow-2xl shadow-black/50 sm:aspect-square" style="clip-path: polygon(0 0, 100% 0, 100% 90%, 92% 100%, 0 100%);">
-        <iframe
-          title="Map of St Ives and the Upper North Shore serviced by Powerhub Electrical"
-          src="https://maps.google.com/maps?q=St%20Ives%20NSW%20Australia&z=12&output=embed"
-          class="h-full w-full border-0 grayscale-[0.2] contrast-[1.05]"
-          loading="lazy"
-          referrerpolicy="no-referrer-when-downgrade"
-          allowfullscreen
-        ></iframe>
+      <div class="aspect-[4/5] bg-brand-secondary/25 p-0.5 shadow-2xl shadow-black/50 sm:aspect-square" style="clip-path: polygon(0 0, 100% 0, 100% 90%, 92% 100%, 0 100%);">
+        <div class="h-full w-full overflow-hidden bg-brand-bg" style="clip-path: polygon(0 0, 100% 0, 100% 90%, 92% 100%, 0 100%);">
+          <img
+            src="/images/powerhub/home/st-ives-map.webp"
+            alt="Map of St Ives and the Upper North Shore serviced by Powerhub Electrical"
+            class="h-full w-full object-cover grayscale-[0.2] contrast-[1.05]"
+            loading="lazy"
+          />
+        </div>
       </div>
       <span class="absolute -bottom-4 left-6 h-20 w-1.5 bg-brand-accent"></span>
     </div>
