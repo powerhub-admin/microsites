@@ -1,0 +1,40 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Theme from '../components/Theme.astro';
+import Nav from '../components/Nav.astro';
+import Hero from '../components/Hero.astro';
+import Intro from '../components/Intro.astro';
+import Founder from '../components/Founder.astro';
+import Services from '../components/Services.astro';
+import USPs from '../components/USPs.astro';
+import Process from '../components/Process.astro';
+import Credentials from '../components/Credentials.astro';
+import Testimonials from '../components/Testimonials.astro';
+import ServiceAreas from '../components/ServiceAreas.astro';
+import CTASection from '../components/CTASection.astro';
+import Faqs from '../components/Faqs.astro';
+import Footer from '../components/Footer.astro';
+---
+<Theme />
+
+<Layout title="Local Electrician Revesby | Powerhub Electrical" description="Need an electrician in Revesby, NSW? Powerhub Electrical offers same-day service, $50 off your first job and 15% off for pensioners. Call 0400 332 331.">
+  <Nav />
+  <main>
+    <Hero />
+    <Intro />
+    <Founder />
+    <Services />
+    <USPs />
+    <Process />
+    <Credentials />
+    <Testimonials />
+    <ServiceAreas />
+    <CTASection
+      heading="Dealing with a switchboard fault or"
+      headingAccent="power outage in Revesby?"
+      body="Call Powerhub Electrical Revesby on 0400 332 331 for a same-day electrician in Revesby who can handle switchboard faults, power outages or safety switch trips fast. New customers save $50 on their first service, and pensioners receive 15% off, with every quote obligation-free."
+    />
+    <Faqs heading="Frequently asked questions" bg="bg-brand-surface" />
+  </main>
+  <Footer />
+</Layout>

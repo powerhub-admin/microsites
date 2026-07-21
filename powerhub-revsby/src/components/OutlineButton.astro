@@ -1,0 +1,23 @@
+---
+// Slanted outline button used site-wide. The parallelogram matches the filled
+// buttons, but the border is drawn as an SVG stroke so it shows on the slanted
+// left/right edges too, and the inside stays transparent. Pass sizing/utility
+// classes via `class` (e.g. "px-7 py-4 text-base" or "w-full").
+interface Props {
+  href: string;
+  class?: string;
+  label?: string;
+}
+const { href, class: extra = '', label } = Astro.props;
+---
+<a
+  href={href}
+  aria-label={label}
+  class:list={["slant-outline group relative inline-flex items-center justify-center gap-2 font-heading font-bold text-brand-secondary transition-colors hover:text-brand-text", extra]}
+>
+  <span class="slant-fill"></span>
+  <svg class="slant-stroke" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
+    <polygon points="6,0 100,0 94,100 0,100" vector-effect="non-scaling-stroke" stroke-linejoin="round" />
+  </svg>
+  <span class="relative z-[1] inline-flex items-center gap-2"><slot /></span>
+</a>

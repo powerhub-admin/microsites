@@ -1,0 +1,86 @@
+---
+import { services } from '../data/services';
+import { servicePages } from '../data/servicePages';
+
+// The homepage copy uses the source document's exact H3 headings, which differ
+// from the nav labels for several items.
+const headingOverride: Record<string, string> = {
+  'emergency-electricians': 'Emergency Electrical Repairs',
+  'switchboard-upgrade': 'Switchboard Repairs and Upgrades',
+  'power-point-installation': 'Power Point Installation',
+  'ceiling-fan-installation': 'Ceiling Fan Installation',
+  'smoke-alarm-installation': 'Smoke Alarm Compliance',
+  'safety-switch-installation': 'Safety Switch and RCD Testing',
+  'lighting-installation': 'LED and General Lighting Installation',
+  'electrical-repairs': 'Electrical Repairs',
+  'exhaust-fan-installation': 'Exhaust Fan Installation and Repair',
+  'level-2-electrician': 'Level 2 Electrician Services',
+  'electrical-fault-finding': 'Electrical Fault Finding',
+  'house-rewiring': 'Home Rewiring',
+  '3-phase-power-upgrade': '3 Phase Power Upgrade',
+  'smart-home-electrician': 'Home Automation',
+};
+
+// Homepage card descriptions, verbatim from the source content brief's
+// "Electrical Services We Offer Across Revesby" section. Kept local to the
+// homepage so the shared service catalogue (services.ts) stays untouched.
+const homeBlurb: Record<string, string> = {
+  'emergency-electricians': 'Power outages, tripped safety switches, and sparking power points call for a licensed electrician in Revesby who can diagnose the fault quickly, restore safe power, and leave the switchboard protected.',
+  'switchboard-upgrade': 'Older Revesby homes with outdated fuse boxes are assessed and upgraded to modern switchboards fitted with RCD safety switches, reducing the risk of electric shock and overloaded circuits.',
+  'power-point-installation': 'Extra power points for home offices, kitchens and outdoor areas are installed to current wiring rules, giving Revesby households safe places to plug in without relying on overloaded power boards.',
+  'ceiling-fan-installation': 'Ceiling fans fitted correctly to the joists or a fan-rated brace keep Revesby bedrooms and living areas comfortable through warmer months while keeping power bills lower than running air conditioning.',
+  'smoke-alarm-installation': 'Interconnected smoke alarms installed on every level help Revesby landlords and homeowners meet NSW requirements, with faulty or expired units replaced and compliance confirmed in writing on the same visit.',
+  'safety-switch-installation': 'Safety switches and RCDs protecting Revesby homes are tested for correct trip times and replaced when faulty, reducing the risk of electric shock when using appliances and power tools.',
+  'lighting-installation': 'Downlights, pendant fittings, and outdoor LED lighting are installed and rewired where needed across the Revesby renovations, providing better room brightness while reducing energy use compared with older halogen downlight systems.',
+  'electrical-repairs': 'General electrical repairs, from damaged wiring to faulty switches and broken fittings, are carried out across Revesby properties, with the same attention to detail as larger switchboard or rewiring projects.',
+  'exhaust-fan-installation': 'Bathroom and kitchen exhaust fans are installed or repaired to remove moisture and cooking fumes from Revesby homes, reducing the risk of mould in bathrooms that lack natural airflow or ventilation entirely.',
+  'level-2-electrician': 'Ausgrid-accredited Level 2 work, including service line repairs, meter relocations and overhead or underground connections, is available for Revesby properties needing network-side electrical work completed safely and to full compliance.',
+  'electrical-fault-finding': 'Flickering lights, tripping circuits, and warm power points in Revesby properties are traced to their real causes using proper testing equipment, rather than guessing or replacing parts unnecessarily.',
+  'house-rewiring': 'Ageing wiring in older Revesby homes is replaced in full or in stages, removing outdated cabling and bringing the property up to current safety standards before renovation or extension work.',
+  '3-phase-power-upgrade': 'Single-phase supply is upgraded to 3-phase power for Revesby properties, adding an EV charger, workshop equipment, or a granny flat that draws more load than a standard connection.',
+  'smart-home-electrician': 'Smart switches, app-controlled lighting, and compatible power points are fitted for Revesby homeowners wanting voice or app control without replacing existing switchboards or rewiring the whole property from scratch.',
+};
+
+// Each card shows the same featured image as its individual service page
+// (the long-form page's heroImg), falling back to the catalogue image so the
+// grid never duplicates an image that a page has since replaced.
+const cardImg = (slug: string, fallback: string) => servicePages[slug]?.heroImg ?? fallback;
+---
+<section id="services" class="relative bg-brand-bg py-24">
+  <div class="pointer-events-none absolute inset-0 opacity-[0.05]" style="background-image: linear-gradient(90deg, var(--color-brand-secondary) 1px, transparent 1px); background-size: 60px 60px;"></div>
+  <div class="relative mx-auto max-w-7xl px-5 sm:px-8 lg:px-8">
+    <div class="reveal mb-4 max-w-3xl">
+      <p class="mb-4 flex items-center gap-3 font-body text-xs font-semibold uppercase tracking-[0.3em] text-brand-muted">
+        <span class="inline-block h-px w-10 bg-brand-accent"></span>
+        Electrical services
+      </p>
+      <h2 class="font-heading text-[clamp(1.9rem,4.5vw,3rem)] font-black uppercase leading-[1.02] tracking-[-0.01em] text-brand-text">
+        Electrical services we offer <span class="text-brand-secondary">across Revesby</span>
+      </h2>
+    </div>
+    <p class="reveal mb-12 max-w-2xl font-body text-lg leading-relaxed text-brand-muted">
+      Powerhub Electrical covers everyday repairs through to specialised network-connected work in Revesby:
+    </p>
+
+    <div class="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+      {services.map((s, i) => (
+        <a href={`/services/${s.slug}`} class="svc reveal group relative flex flex-col overflow-hidden border border-white/5 bg-brand-surface transition-colors hover:border-brand-accent/50" style={`transition-delay: ${(i % 3) * 70}ms; clip-path: polygon(0 0, 100% 0, 100% 94%, 96% 100%, 0 100%);`}>
+          <span class="svc-top absolute inset-x-0 top-0 z-20 h-1 origin-left scale-x-0 bg-brand-accent transition-transform duration-300"></span>
+          <div class="relative h-56 overflow-hidden">
+            <img src={cardImg(s.slug, s.img)} alt={s.alt} class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105" loading="lazy" />
+            <div class="absolute inset-0 bg-gradient-to-t from-brand-surface via-brand-surface/20 to-transparent"></div>
+          </div>
+          <div class="flex flex-1 flex-col p-6">
+            <h3 class="font-heading text-lg font-black uppercase leading-tight tracking-tight text-brand-secondary">{headingOverride[s.slug] ?? s.navLabel}</h3>
+            <p class="mt-2 font-body text-sm leading-relaxed text-brand-muted">{homeBlurb[s.slug] ?? s.blurb}</p>
+            <span class="mt-4 inline-flex items-center gap-1 font-heading text-xs font-bold uppercase tracking-widest text-brand-accent transition-colors group-hover:text-brand-secondary">Learn more →</span>
+          </div>
+        </a>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .svc:hover .svc-top { transform: scaleX(1); }
+</style>

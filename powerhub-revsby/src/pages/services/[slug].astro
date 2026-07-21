@@ -1,0 +1,135 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Theme from '../../components/Theme.astro';
+import NavInner from '../../components/NavInner.astro';
+import Footer from '../../components/Footer.astro';
+import PageHero from '../../components/PageHero.astro';
+import CTASection from '../../components/CTASection.astro';
+import Bolt from '../../components/Bolt.astro';
+import OutlineButton from '../../components/OutlineButton.astro';
+import ServicePage from '../../components/ServicePage.astro';
+import { services } from '../../data/services';
+import { servicePages } from '../../data/servicePages';
+import { site } from '../../data/site';
+
+export function getStaticPaths() {
+  // Slugs that have their own standalone .astro file instead of this template.
+  const CUSTOM_PAGES = ['emergency-electricians'];
+  return services
+    .filter((service) => !CUSTOM_PAGES.includes(service.slug))
+    .map((service) => ({ params: { slug: service.slug }, props: { service } }));
+}
+
+const { service } = Astro.props;
+const rich = servicePages[service.slug];
+const related = services.filter((s) => s.slug !== service.slug).slice(0, 4);
+const gallery = service.img2 ? [service.img, service.img2] : [service.img];
+---
+{rich ? <ServicePage page={rich} /> : (
+<><Theme />
+<Layout title={`${service.title} | Powerhub Electrical`} description={service.blurb}>
+  <NavInner />
+  <main id="top">
+    <PageHero
+      eyebrow={service.tagline}
+      title={service.title}
+      sub={service.intro}
+      crumbs={[{ label: 'Home', href: '/' }, { label: 'Services', href: '/services' }, { label: service.navLabel }]}
+      img={service.img}
+      badges={['Same-day service', 'Fixed pricing', '$50 off first service', 'Licensed #467291C']}
+    />
+
+    <!-- OVERVIEW -->
+    <section class="relative bg-brand-surface py-20 sm:py-28">
+      <div class="mx-auto grid max-w-7xl items-center gap-12 px-5 sm:px-8 lg:grid-cols-[1.05fr_0.95fr] lg:gap-16">
+        <div class="reveal">
+          <p class="mb-4 flex items-center gap-3 font-body text-xs font-semibold uppercase tracking-[0.3em] text-brand-muted">
+            <span class="inline-block h-px w-10 bg-brand-accent"></span> Overview
+          </p>
+          <h2 class="font-heading text-3xl font-black uppercase leading-[1.05] tracking-[-0.01em] text-brand-text sm:text-4xl">
+            {service.navLabel} in <span class="text-brand-secondary">Revesby</span>
+          </h2>
+          <p class="mt-6 font-body text-lg leading-relaxed text-brand-muted">{service.body}</p>
+          {service.link && (
+            <p class="mt-5 font-body text-sm text-brand-muted">
+              Reference: <a href={service.link.href} target="_blank" rel="noopener noreferrer" class="font-semibold text-brand-secondary underline decoration-brand-accent/50 underline-offset-4 transition-colors hover:text-brand-accent">{service.link.label} →</a>
+            </p>
+          )}
+          <div class="mt-8 flex flex-col gap-4 sm:flex-row sm:items-center">
+            <a href={site.phoneHref} class="sweep-btn group relative inline-flex items-center justify-center gap-2 overflow-hidden px-7 py-4 font-heading text-base font-bold text-brand-bg" style="clip-path: polygon(6% 0, 100% 0, 94% 100%, 0 100%); background: var(--color-brand-accent);">
+              <span class="relative z-10">Call {site.phoneDisplay}</span><Bolt class="relative z-10 h-4 w-4" />
+            </a>
+            <OutlineButton href="/contact-us" class="px-7 py-4 text-base">Get a free quote</OutlineButton>
+          </div>
+        </div>
+
+        <div class="reveal" style="transition-delay:120ms;">
+          <div class="grid gap-4">
+            {gallery.map((g, i) => (
+              <div class={`relative bg-brand-secondary/25 p-0.5 shadow-2xl shadow-black/60 ${i === 0 ? '' : 'ml-8'}`} style="clip-path: polygon(0 0, 100% 0, 100% 90%, 92% 100%, 0 100%);">
+                <div class="h-full w-full overflow-hidden" style="clip-path: polygon(0 0, 100% 0, 100% 90%, 92% 100%, 0 100%);">
+                  <img src={g} alt={service.alt} class="h-full w-full object-cover" loading="lazy" />
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- WHAT'S INCLUDED -->
+    <section class="relative bg-brand-bg py-20 sm:py-28">
+      <div class="mx-auto max-w-7xl px-5 sm:px-8">
+        <div class="reveal mb-12 max-w-2xl">
+          <p class="mb-4 flex items-center gap-3 font-body text-xs font-semibold uppercase tracking-[0.3em] text-brand-muted">
+            <span class="inline-block h-px w-10 bg-brand-accent"></span> What you get
+          </p>
+          <h2 class="font-heading text-3xl font-black uppercase leading-[1.02] tracking-[-0.01em] text-brand-text sm:text-4xl">
+            Done the <span class="text-brand-secondary">right way</span>
+          </h2>
+        </div>
+        <div class="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+          {service.points.map((p, i) => (
+            <article class="reveal border border-white/8 bg-brand-surface p-6 transition-colors hover:border-brand-accent/50" style={`clip-path: polygon(0 0, 100% 0, 97% 100%, 0 100%); transition-delay:${(i % 3) * 80}ms`}>
+              <span class="mb-4 inline-flex h-9 w-9 items-center justify-center bg-brand-accent/15 text-brand-accent" style="clip-path: polygon(0 0, 100% 0, 85% 100%, 0 100%);">
+                <Bolt class="h-5 w-5" />
+              </span>
+              <h3 class="font-heading text-lg font-black uppercase tracking-[-0.01em] text-brand-text">{p.title}</h3>
+              <p class="mt-2 font-body text-sm leading-relaxed text-brand-muted">{p.desc}</p>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- RELATED -->
+    <section class="relative bg-brand-surface py-20 sm:py-28">
+      <div class="mx-auto max-w-7xl px-5 sm:px-8">
+        <div class="reveal mb-12 max-w-2xl">
+          <p class="mb-4 flex items-center gap-3 font-body text-xs font-semibold uppercase tracking-[0.3em] text-brand-muted">
+            <span class="inline-block h-px w-10 bg-brand-accent"></span> Related services
+          </p>
+          <h2 class="font-heading text-3xl font-black uppercase leading-[1.02] tracking-[-0.01em] text-brand-text sm:text-4xl">
+            More ways we <span class="text-brand-secondary">help</span>
+          </h2>
+        </div>
+        <div class="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+          {related.map((s, i) => (
+            <a href={`/services/${s.slug}`} class="reveal group block overflow-hidden border border-white/8 bg-brand-bg transition-colors hover:border-brand-accent/50" style={`clip-path: polygon(0 0, 100% 0, 97% 100%, 0 100%); transition-delay:${i * 60}ms`}>
+              <div class="overflow-hidden">
+                <img src={s.img} alt={s.alt} class="h-36 w-full object-cover transition-transform duration-500 group-hover:scale-105" loading="lazy" />
+              </div>
+              <div class="p-5">
+                <h3 class="font-heading text-sm font-black uppercase tracking-[-0.01em] text-brand-text group-hover:text-brand-secondary">{s.navLabel}</h3>
+              </div>
+            </a>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <CTASection />
+  </main>
+  <Footer />
+</Layout></>
+)}

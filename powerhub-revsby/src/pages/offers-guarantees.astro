@@ -1,0 +1,209 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Theme from '../components/Theme.astro';
+import NavInner from '../components/NavInner.astro';
+import Footer from '../components/Footer.astro';
+import PageHero from '../components/PageHero.astro';
+import Faqs from '../components/Faqs.astro';
+import OutlineButton from '../components/OutlineButton.astro';
+import Bolt from '../components/Bolt.astro';
+import { site } from '../data/site';
+
+const linkClass = 'font-semibold text-brand-secondary underline decoration-brand-accent/50 underline-offset-4 hover:text-brand-accent';
+
+const offers = [
+  { title: '$50 Off Your First Service', desc: 'New customers booking with Powerhub Electrical Revesby receive $50 off their first invoice, deducted directly from the cost of labour and materials on that visit, regardless of job type.' },
+  { title: '15% Pensioner Discount', desc: 'Pensioners across Revesby receive 15% off the invoice on any electrical job, a straightforward reduction applied at the time of booking or service, provided a valid concession card is shown.' },
+  { title: 'Free 5-Star Electrical Safety Inspection', desc: 'Every booking includes a complimentary 5-star electrical safety inspection, giving Revesby homeowners a broader check of switchboard and wiring safety beyond the specific job requested, at no extra cost.' },
+  { title: 'Obligation-Free Quotes', desc: 'Every quote is provided free of charge and without obligation, so Revesby customers can compare pricing or simply decide not to proceed without any pressure or cost involved at all.' },
+];
+
+const promises = [
+  { title: "If It's Not Good Enough for My Home, It's Not Good Enough for Yours", desc: 'Every property is treated with the same care Brian Ho would want in his own home, rather than a lower standard applied because a job is smaller or less visible.' },
+  { title: 'Quality Workmanship Over Quick Fixes', desc: 'The team focuses on doing a job properly the first time rather than a fast, temporary fix, since there is not always time or money to redo work again later.' },
+  { title: 'Transparent Advice, No Pushy Sales', desc: 'Faults, options and pricing are explained honestly in plain language, including cheaper alternatives where genuinely suitable, rather than upselling a customer to something more expensive than needed for the job.' },
+  { title: 'Explaining the Why, Not Just the What', desc: 'Every repair, upgrade or recommendation is explained clearly, so customers understand what failed, why it happened, and what the options are, rather than being handed a bill with no context.' },
+];
+
+const useSteps = [
+  { n: '01', title: 'Mention the Offer When Booking', desc: 'Customers simply mention the $50 first service discount or the pensioner discount when booking, and the free safety inspection is included automatically with every job completed across Revesby and beyond.' },
+  { n: '02', title: 'Raise a Concern Directly First', desc: 'Any concern about completed work is raised directly with the business first, giving the team a chance to explain, fix or discuss the issue before looking at any other option.' },
+  { n: '03', title: 'Consumer Guarantee Rights Remain Available', desc: 'If a concern is not resolved directly, customers retain their consumer guarantee rights under Australian Consumer Law, separate from and in addition to any business-specific promise made here.' },
+];
+
+const offerFaqs = [
+  { q: 'How do I redeem the $50 off first service offer?', a: 'Simply mention the offer when booking or during the initial call, and it will be applied directly to the invoice for a first time customer.' },
+  { q: 'Can the pensioner discount be combined with the $50 first service offer?', a: 'Both discounts generally apply to the same invoice for an eligible new pensioner customer, though this can be confirmed directly when booking to avoid any confusion.' },
+  { q: 'Is the free safety inspection a real inspection or just a sales pitch?', a: 'It is a genuine check of switchboard and wiring safety completed during the visit, not a scripted opportunity to recommend unnecessary additional work.' },
+  { q: 'Do these offers apply to commercial customers as well as homeowners?', a: 'Yes, current offers generally apply to small businesses and shopfronts across Revesby in the same way they apply to residential customers, unless stated otherwise.' },
+  { q: "What happens if I'm not satisfied with the completed work?", a: 'Concerns about completed work are addressed honestly and directly with Powerhub Electrical Revesby first, and customers also retain their consumer guarantee rights under Australian Consumer Law regardless of any offer made.' },
+  { q: 'Do these offers expire or change over time?', a: 'Offers reflect current business terms and may be updated from time to time, so customers are encouraged to confirm current offers directly when booking a job.' },
+];
+---
+<Theme />
+<Layout title="Electrician Revesby Offers and Guarantees | Powerhub Electrical Revesby" description="Current offers for Revesby customers, including $50 off first service and 15% off for pensioners, plus our promise on every job. Call 0400 332 331.">
+  <NavInner />
+  <main id="top">
+    <PageHero
+      eyebrow="Offers & guarantees"
+      title="Electrician Revesby"
+      accent="Offers and Guarantees"
+      sub="Electrician Revesby offers currently include a discount for new customers and pensioners. Every price is fixed and confirmed before work begins."
+      crumbs={[{ label: 'Home', href: '/' }, { label: 'Offers & Guarantees' }]}
+    >
+      <p>Genuine discounts and a straightforward promise about how every job is handled, not vague marketing claims.</p>
+      <p>Real savings and a clear standard of work matter more than generic taglines. This page lists the electrician Revesby offers currently available, alongside the promise behind every job Powerhub Electrical Revesby completes across Revesby and greater Sydney.</p>
+    </PageHero>
+
+    <!-- CURRENT OFFERS -->
+    <section class="relative bg-brand-surface py-20 sm:py-24">
+      <div class="mx-auto max-w-7xl px-5 sm:px-8">
+        <div class="reveal mb-4 max-w-2xl">
+          <p class="mb-4 flex items-center gap-3 font-body text-xs font-semibold uppercase tracking-[0.3em] text-brand-muted">
+            <span class="inline-block h-px w-10 bg-brand-accent"></span> Current offers
+          </p>
+          <h2 class="font-heading text-3xl font-black uppercase leading-[1.02] tracking-[-0.01em] text-brand-text sm:text-4xl">
+            Current offers for <span class="text-brand-secondary">Revesby customers</span>
+          </h2>
+        </div>
+        <p class="reveal mb-12 max-w-2xl font-body text-lg leading-relaxed text-brand-muted">These are the offers currently available to Powerhub Electrical Revesby customers across Revesby:</p>
+        <div class="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+          {offers.map((o, i) => (
+            <article class="reveal relative flex flex-col border border-brand-secondary/25 bg-brand-bg p-7 transition-colors hover:border-brand-accent/60" style={`clip-path: polygon(0 0, 100% 0, 100% 93%, 96% 100%, 0 100%); transition-delay:${i * 80}ms`}>
+              <span class="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-brand-secondary to-brand-accent"></span>
+              <span class="mb-4 grid h-9 w-9 place-items-center text-brand-bg" style="clip-path: polygon(0 0, 100% 0, 100% 70%, 70% 100%, 0 100%); background: var(--color-brand-secondary);"><Bolt class="h-4 w-4" /></span>
+              <h3 class="font-heading text-xl font-black uppercase leading-tight tracking-tight text-brand-secondary">{o.title}</h3>
+              <p class="mt-3 font-body text-sm leading-relaxed text-brand-muted">{o.desc}</p>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- OUR PROMISE -->
+    <section class="relative bg-brand-bg py-20 sm:py-28">
+      <div class="mx-auto max-w-7xl px-5 sm:px-8">
+        <div class="reveal mb-4 max-w-2xl">
+          <p class="mb-4 flex items-center gap-3 font-body text-xs font-semibold uppercase tracking-[0.3em] text-brand-muted">
+            <span class="inline-block h-px w-10 bg-brand-accent"></span> Our promise
+          </p>
+          <h2 class="font-heading text-3xl font-black uppercase leading-[1.02] tracking-[-0.01em] text-brand-text sm:text-4xl">
+            Our promise to <span class="text-brand-secondary">every Revesby customer</span>
+          </h2>
+        </div>
+        <p class="reveal mb-12 max-w-2xl font-body text-lg leading-relaxed text-brand-muted">This is the standard every job across Revesby is measured against:</p>
+        <div class="grid gap-px overflow-hidden border border-white/5 bg-white/5 sm:grid-cols-2">
+          {promises.map((p, i) => (
+            <div class="reveal group bg-brand-surface p-8 transition-colors hover:bg-brand-bg" style={`transition-delay: ${(i % 2) * 90}ms;`}>
+              <span class="mb-4 grid h-9 w-9 place-items-center text-brand-bg" style="clip-path: polygon(0 0, 100% 0, 100% 70%, 70% 100%, 0 100%); background: var(--color-brand-secondary);">
+                <Bolt class="h-4 w-4" />
+              </span>
+              <h3 class="font-heading text-lg font-bold uppercase leading-tight tracking-tight text-brand-text">{p.title}</h3>
+              <p class="mt-2 font-body text-base leading-relaxed text-brand-muted">{p.desc}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- CREDENTIALS -->
+    <section class="relative bg-brand-surface py-20 sm:py-28">
+      <div class="mx-auto max-w-4xl px-5 sm:px-8">
+        <div class="reveal mb-4">
+          <p class="mb-4 flex items-center gap-3 font-body text-xs font-semibold uppercase tracking-[0.3em] text-brand-muted">
+            <span class="inline-block h-px w-10 bg-brand-accent"></span> Verify us
+          </p>
+          <h2 class="font-heading text-3xl font-black uppercase leading-[1.02] tracking-[-0.01em] text-brand-text sm:text-4xl">
+            Why These Promises Are <span class="text-brand-secondary">Backed Up</span>
+          </h2>
+        </div>
+        <p class="reveal mb-8 font-body text-lg leading-relaxed text-brand-muted">A few reasons these offers and promises from Powerhub Electrical Revesby hold up in practice:</p>
+        <ul class="space-y-4">
+          <li class="reveal flex items-start gap-3 border border-white/8 bg-brand-bg p-5" style="clip-path: polygon(0 0, 100% 0, 99% 100%, 0 100%);">
+            <span class="mt-0.5 grid h-7 w-7 shrink-0 place-items-center bg-brand-accent/15 text-brand-accent" style="clip-path: polygon(0 0, 100% 0, 80% 100%, 0 100%);"><Bolt class="h-4 w-4" /></span>
+            <span class="font-body text-base leading-relaxed text-brand-text">Every job is completed under Electrical Supervisor Licence #467291C, verifiable through <a href="https://www.service.nsw.gov.au/transaction/check-a-builder-or-tradesperson-licence" target="_blank" rel="noopener noreferrer" class={linkClass}>Service NSW's licence check tool</a></span>
+          </li>
+          <li class="reveal flex items-start gap-3 border border-white/8 bg-brand-bg p-5" style="clip-path: polygon(0 0, 100% 0, 99% 100%, 0 100%); transition-delay:60ms;">
+            <span class="mt-0.5 grid h-7 w-7 shrink-0 place-items-center bg-brand-accent/15 text-brand-accent" style="clip-path: polygon(0 0, 100% 0, 80% 100%, 0 100%);"><Bolt class="h-4 w-4" /></span>
+            <span class="font-body text-base leading-relaxed text-brand-text">The business has built more than 100 positive customer reviews across greater Sydney</span>
+          </li>
+          <li class="reveal flex items-start gap-3 border border-white/8 bg-brand-bg p-5" style="clip-path: polygon(0 0, 100% 0, 99% 100%, 0 100%); transition-delay:120ms;">
+            <span class="mt-0.5 grid h-7 w-7 shrink-0 place-items-center bg-brand-accent/15 text-brand-accent" style="clip-path: polygon(0 0, 100% 0, 80% 100%, 0 100%);"><Bolt class="h-4 w-4" /></span>
+            <span class="font-body text-base leading-relaxed text-brand-text">The team brings more than 25 years of combined trade experience to every job</span>
+          </li>
+          <li class="reveal flex items-start gap-3 border border-white/8 bg-brand-bg p-5" style="clip-path: polygon(0 0, 100% 0, 99% 100%, 0 100%); transition-delay:180ms;">
+            <span class="mt-0.5 grid h-7 w-7 shrink-0 place-items-center bg-brand-accent/15 text-brand-accent" style="clip-path: polygon(0 0, 100% 0, 80% 100%, 0 100%);"><Bolt class="h-4 w-4" /></span>
+            <span class="font-body text-base leading-relaxed text-brand-text">The business is family-owned and operated, directed personally by Brian Ho</span>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- CONSUMER LAW -->
+    <section class="relative bg-brand-bg py-20 sm:py-24">
+      <div class="mx-auto max-w-4xl px-5 sm:px-8">
+        <div class="reveal mb-4">
+          <p class="mb-4 flex items-center gap-3 font-body text-xs font-semibold uppercase tracking-[0.3em] text-brand-muted">
+            <span class="inline-block h-px w-10 bg-brand-accent"></span> Consumer law
+          </p>
+          <h2 class="font-heading text-3xl font-black uppercase leading-[1.02] tracking-[-0.01em] text-brand-text sm:text-4xl">
+            How These Offers and Promises Work Alongside <span class="text-brand-secondary">Consumer Law</span>
+          </h2>
+        </div>
+        <p class="reveal font-body text-lg leading-relaxed text-brand-muted">
+          Powerhub Electrical Revesby's offers and promises sit in addition to, and do not replace, the consumer guarantees that already apply under <a href="https://www.accc.gov.au/consumers/buying-products-and-services/consumer-rights-and-guarantees" target="_blank" rel="noopener noreferrer" class={linkClass}>Australian Consumer Law</a>, including the right to a repair, replacement or remedy if a service is not carried out with acceptable care and skill. <a href="https://www.nsw.gov.au/legal-and-justice/consumer-rights-and-protection/guarantees-contracts-and-warranties/consumer-guarantees" target="_blank" rel="noopener noreferrer" class={linkClass}>NSW-specific guidance</a> on these rights is also publicly available for anyone who wants to read the detail directly.
+        </p>
+      </div>
+    </section>
+
+    <!-- HOW TO USE AN OFFER -->
+    <section class="relative bg-brand-surface py-20 sm:py-28">
+      <div class="mx-auto max-w-7xl px-5 sm:px-8">
+        <div class="reveal mb-4 max-w-2xl">
+          <p class="mb-4 flex items-center gap-3 font-body text-xs font-semibold uppercase tracking-[0.3em] text-brand-muted">
+            <span class="inline-block h-px w-10 bg-brand-accent"></span> The process
+          </p>
+          <h2 class="font-heading text-3xl font-black uppercase leading-[1.02] tracking-[-0.01em] text-brand-text sm:text-4xl">
+            How to Use an <span class="text-brand-secondary">Offer or Raise a Concern</span>
+          </h2>
+        </div>
+        <p class="reveal mb-12 max-w-2xl font-body text-lg leading-relaxed text-brand-muted">Using a current offer or raising a concern about completed work follows a simple process:</p>
+        <div class="grid gap-5 lg:grid-cols-3">
+          {useSteps.map((s, i) => (
+            <div class="reveal relative border border-white/8 bg-brand-bg p-7 transition-colors hover:border-brand-accent/40" style={`clip-path: polygon(0 0, 100% 0, 97% 100%, 0 100%); transition-delay:${i * 80}ms`}>
+              <span class="font-heading text-4xl font-black tracking-[-0.03em] text-brand-secondary/30">{s.n}</span>
+              <h3 class="mt-3 font-heading text-lg font-black uppercase tracking-[-0.01em] text-brand-text">{s.title}</h3>
+              <p class="mt-2 font-body text-sm leading-relaxed text-brand-muted">{s.desc}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <Faqs heading="Frequently Asked Questions" items={offerFaqs} bg="bg-brand-bg" />
+
+    <!-- CTA -->
+    <section class="relative overflow-hidden bg-brand-surface py-24">
+      <div class="pointer-events-none absolute inset-0 opacity-[0.06]" style="background-image: linear-gradient(90deg, var(--color-brand-secondary) 1px, transparent 1px); background-size: 50px 50px;"></div>
+      <div class="relative mx-auto max-w-4xl px-5 text-center sm:px-8">
+        <p class="reveal mb-5 inline-flex items-center gap-2 border border-brand-accent/50 bg-brand-accent/10 px-4 py-1.5 font-heading text-xs font-bold uppercase tracking-widest text-brand-accent pulse-glow">
+          <Bolt class="h-3.5 w-3.5" /> Book and save
+        </p>
+        <h2 class="reveal font-heading text-[clamp(2rem,5.5vw,3.6rem)] font-black uppercase leading-[1.0] tracking-[-0.01em] text-brand-text" style="transition-delay:80ms;">
+          Ready to Book <span class="text-brand-accent">With These Offers?</span>
+        </h2>
+        <p class="reveal mx-auto mt-6 max-w-2xl font-body text-lg leading-relaxed text-brand-muted" style="transition-delay:160ms;">
+          Call Powerhub Electrical Revesby on {site.phoneDisplay} to book with current offers applied, including $50 off your first service and 15% off for pensioners, backed by an obligation-free, fixed price quote.
+        </p>
+        <div class="reveal mt-9 flex flex-col items-center justify-center gap-4 sm:flex-row" style="transition-delay:240ms;">
+          <a href={site.phoneHref} class="sweep-btn group relative inline-flex items-center justify-center gap-2 overflow-hidden px-8 py-4 font-heading text-base font-bold text-brand-bg" style="clip-path: polygon(6% 0, 100% 0, 94% 100%, 0 100%); background: var(--color-brand-accent);">
+            <span class="relative z-10">Call {site.phoneDisplay}</span>
+            <Bolt class="relative z-10 h-4 w-4" />
+          </a>
+          <OutlineButton href="/contact-us" class="px-8 py-4 text-base">Get a Free Quote</OutlineButton>
+        </div>
+      </div>
+    </section>
+  </main>
+  <Footer />
+</Layout>

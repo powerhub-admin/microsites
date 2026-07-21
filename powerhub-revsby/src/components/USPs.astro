@@ -1,0 +1,44 @@
+---
+import Bolt from './Bolt.astro';
+
+const pillars = [
+  { n: '01', title: '$50 off your first service', desc: 'New customers across Revesby can claim $50 off their first service, a straightforward discount applied directly to the invoice rather than a vague promise buried in fine print or conditions.' },
+  { n: '02', title: '15% pensioner discount', desc: 'Pensioners in Revesby receive 15% off the total invoice on any electrical job booked with Powerhub Electrical Revesby, a reduction rather than a discount limited to a single call-out fee.' },
+  { n: '03', title: 'Director-led electrical work', desc: 'Brian Ho, director of Powerhub Electrical Revesby, personally oversees local jobs, meaning the person quoting the work holds the same electrical supervisor licence that is responsible for the standard of every installation.' },
+  { n: '04', title: 'Free 5-star safety inspection', desc: 'Every Revesby booking includes a complimentary 5-star electrical safety inspection, giving homeowners a documented health check of their own switchboard, wiring and safety switches at no additional cost or obligation.' },
+];
+---
+<section id="usps" class="relative overflow-hidden bg-brand-surface py-24">
+  <div aria-hidden="true" class="pointer-events-none absolute -top-16 right-0 hidden h-72 w-[42%] opacity-[0.18] lg:block" style="clip-path: polygon(12% 0, 100% 0, 100% 100%, 0 100%); background-image: linear-gradient(var(--color-brand-secondary) 1px, transparent 1px), linear-gradient(90deg, var(--color-brand-secondary) 1px, transparent 1px); background-size: 40px 40px;"></div>
+  <div class="pointer-events-none absolute inset-0 bg-gradient-to-b from-brand-surface/70 via-brand-surface to-brand-surface"></div>
+
+  <div class="relative mx-auto max-w-7xl px-5 sm:px-8 lg:px-8">
+    <div class="reveal mb-4 max-w-3xl">
+      <p class="mb-4 flex items-center gap-3 font-body text-xs font-semibold uppercase tracking-[0.3em] text-brand-muted">
+        <span class="inline-block h-px w-10 bg-brand-accent"></span>
+        Why choose Powerhub
+      </p>
+      <h2 class="font-heading text-[clamp(1.9rem,4.5vw,3rem)] font-black uppercase leading-[1.02] tracking-[-0.01em] text-brand-text">
+        What sets Powerhub Electrical <span class="text-brand-secondary">apart in Revesby</span>
+      </h2>
+    </div>
+    <p class="reveal mb-12 max-w-2xl font-body text-lg leading-relaxed text-brand-muted">
+      A few reasons Revesby customers choose Powerhub Electrical over other local trades:
+    </p>
+
+    <div class="grid gap-px overflow-hidden border border-white/5 bg-white/5 sm:grid-cols-2">
+      {pillars.map((p, i) => (
+        <div class="reveal group relative bg-brand-bg p-8 transition-colors hover:bg-brand-surface" style={`transition-delay: ${(i % 2) * 90}ms;`}>
+          <div class="mb-4 flex items-center justify-between">
+            <span class="font-heading text-3xl font-black tabular-nums text-brand-secondary/30 transition-colors group-hover:text-brand-accent">{p.n}</span>
+            <span class="grid h-9 w-9 place-items-center text-brand-bg" style="clip-path: polygon(0 0, 100% 0, 100% 70%, 70% 100%, 0 100%); background: var(--color-brand-secondary);">
+              <Bolt class="h-4 w-4" />
+            </span>
+          </div>
+          <h3 class="font-heading text-xl font-bold uppercase leading-tight tracking-tight text-brand-text">{p.title}</h3>
+          <p class="mt-2 font-body text-base leading-relaxed text-brand-muted">{p.desc}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

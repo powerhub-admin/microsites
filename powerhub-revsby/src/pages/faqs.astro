@@ -1,0 +1,78 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Theme from '../components/Theme.astro';
+import NavInner from '../components/NavInner.astro';
+import Footer from '../components/Footer.astro';
+import PageHero from '../components/PageHero.astro';
+import Faqs from '../components/Faqs.astro';
+import OutlineButton from '../components/OutlineButton.astro';
+import Bolt from '../components/Bolt.astro';
+import { site } from '../data/site';
+
+const faqItems = [
+  { q: "Is Powerhub Electrical Revesby a licensed electrical business?", a: "Yes, the business operates under Electrical Supervisor Licence #467291C, which can be verified independently through Service NSW's licence check tool." },
+  { q: "What is the electrical supervisor licence number?", a: "The Electrical Supervisor Licence number is 467291C, held by the business's director, Brian Ho, who personally oversees every job undertaken across Revesby." },
+  { q: "Who owns Powerhub Electrical Revesby?", a: "Powerhub Electrical Revesby is a family-owned and operated business, directed by Brian Ho, who founded the company in 2023." },
+  { q: "How much experience does the team have?", a: "The team brings more than 25 years of combined trade experience, giving Revesby customers confidence in both routine repairs and larger electrical projects." },
+  { q: "Does the business service Revesby directly?", a: "Revesby sits within the wider Sydney coverage area, serviced from the Epping base, with jobs scheduled in advance to keep travel time and costs predictable." },
+  { q: "What other suburbs are serviced?", a: "Coverage extends across greater Sydney, including Epping, Beecroft, Carlingford, Parramatta, the Hills District and surrounding areas, alongside Revesby and nearby suburbs." },
+  { q: "Is there a call-out fee?", a: "Every quote is confirmed upfront and obligation-free, so customers know the full cost of a job before any work begins, without a separate call-out charge added." },
+  { q: "Is the first quote free?", a: "Yes, every quote is obligation-free, with a fixed price confirmed before any work is booked in, regardless of whether the customer decides to proceed." },
+  { q: "Do you offer a pensioner discount?", a: "Yes, pensioners receive 15% off the invoice on any electrical job, a straightforward reduction applied at the time of booking or service." },
+  { q: "What does the $50 off first service offer include?", a: "New customers receive $50 off their first invoice, deducted directly from the cost of labour and materials on that visit, regardless of the job type." },
+  { q: "Are quotes fixed price or charged by the hour?", a: "Quotes are fixed price wherever possible, confirmed before work begins, so customers know the total cost upfront rather than paying an hourly rate." },
+  { q: "How quickly can someone attend a job in Revesby?", a: "Most bookings are scheduled for the same day where possible, with urgent safety issues prioritised ahead of routine maintenance or installation work." },
+  { q: "What happens during the free safety inspection?", a: "Every booking includes a complimentary 5-star electrical safety inspection, covering a broader check of switchboard and wiring safety beyond the specific job requested." },
+  { q: "Do I need to be home during the appointment?", a: "Yes, someone with authority to approve the work generally needs to be present, particularly for diagnosis, quoting and final sign-off once the job is finished." },
+  { q: "How many reviews does Powerhub Electrical Revesby have?", a: "More than 100 positive customer reviews have been built up over time, giving Revesby homeowners a track record to check before booking any electrical work." },
+  { q: "Can I check the licence myself before booking?", a: "Yes, the Electrical Supervisor Licence can be independently verified through Service NSW's licence check tool, so customers do not need to take any claim on trust." },
+  { q: "What electrical products or brands are used?", a: "Fittings from established brands such as Clipsal, HPM, Hager, Schneider Electric and NHP are used, matched to the specific job rather than a single default brand." },
+  { q: "What services are offered?", a: "Services range from emergency repairs, switchboard and safety switch work, lighting and power point installation, through to Level 2 ASP work and full home rewiring." },
+  { q: "Does the business handle commercial electrical work?", a: "Yes, small businesses and shopfronts across Revesby are serviced alongside residential customers, covering repairs, installations and compliance work suited to commercial premises." },
+  { q: "Does the business work on rental properties?", a: "Yes, landlords and property managers can arrange repairs, safety switch testing, smoke alarm compliance and other work, with documentation provided to support tenancy and compliance records." },
+  { q: "Can Level 2 electrical work be arranged?", a: "Yes, Level 2 ASP work, including service line repairs, meter relocations and network connections, is available for Revesby properties, coordinated correctly with Ausgrid." },
+  { q: "What happens if I'm not happy with completed work?", a: "Any concerns are addressed directly and honestly first, and customers also retain their consumer guarantee rights under Australian Consumer Law regardless of any business-specific promise." },
+  { q: "Can work be redone if there's a genuine problem?", a: "Yes, genuine workmanship issues are addressed directly, consistent with the business's focus on quality over quick fixes rather than leaving a customer with an unresolved problem." },
+  { q: "How is Powerhub Electrical Revesby different from other local electricians?", a: "The business combines director-led oversight, fixed transparent pricing, and a family-owned structure, rather than relying on generic claims that any competitor could equally make." },
+  { q: "How do I book an electrician in Revesby?", a: "Call 0400 332 331 or send an enquiry to arrange a same day assessment where possible, with a fixed, obligation-free quote provided before any work begins." },
+];
+---
+<Theme />
+<Layout title="Electrician Revesby FAQs | Powerhub Electrical" description="Common questions about Powerhub Electrical in Revesby, covering pricing, licensing, service area and booking. Straightforward answers. Call 0400 332 331.">
+  <NavInner />
+  <main id="top">
+    <PageHero
+      eyebrow="FAQs"
+      title="Electrician"
+      accent="Revesby FAQs"
+      sub="These electrician Revesby FAQs answer the licensing, pricing and booking questions asked most often. Every answer reflects real business details, not generic industry information."
+      crumbs={[{ label: 'Home', href: '/' }, { label: 'FAQs' }]}
+    />
+
+    <Faqs items={faqItems} bg="bg-brand-surface" />
+
+    <!-- STILL HAVE A QUESTION -->
+    <section class="relative overflow-hidden bg-brand-bg py-24">
+      <div class="pointer-events-none absolute inset-0 opacity-[0.06]" style="background-image: linear-gradient(90deg, var(--color-brand-secondary) 1px, transparent 1px); background-size: 50px 50px;"></div>
+      <div class="relative mx-auto max-w-4xl px-5 text-center sm:px-8">
+        <p class="reveal mb-5 inline-flex items-center gap-2 border border-brand-accent/50 bg-brand-accent/10 px-4 py-1.5 font-heading text-xs font-bold uppercase tracking-widest text-brand-accent pulse-glow">
+          <Bolt class="h-3.5 w-3.5" /> We're here to help
+        </p>
+        <h2 class="reveal font-heading text-[clamp(2rem,5.5vw,3.4rem)] font-black uppercase leading-[1.0] tracking-[-0.01em] text-brand-text" style="transition-delay:80ms;">
+          Still Have a <span class="text-brand-accent">Question?</span>
+        </h2>
+        <p class="reveal mx-auto mt-6 max-w-2xl font-body text-lg leading-relaxed text-brand-muted" style="transition-delay:160ms;">
+          Call Powerhub Electrical Revesby on 0400 332 331 if these electrician Revesby FAQs didn't cover your question. Every quote is fixed and obligation-free, backed by Electrical Supervisor Licence #467291C.
+        </p>
+        <div class="reveal mt-9 flex flex-col items-center justify-center gap-4 sm:flex-row" style="transition-delay:240ms;">
+          <a href={site.phoneHref} class="sweep-btn group relative inline-flex items-center justify-center gap-2 overflow-hidden px-8 py-4 font-heading text-base font-bold text-brand-bg" style="clip-path: polygon(6% 0, 100% 0, 94% 100%, 0 100%); background: var(--color-brand-accent);">
+            <span class="relative z-10">Call {site.phoneDisplay}</span>
+            <Bolt class="relative z-10 h-4 w-4" />
+          </a>
+          <OutlineButton href="/contact-us" class="px-8 py-4 text-base">Get a Free Quote</OutlineButton>
+        </div>
+      </div>
+    </section>
+  </main>
+  <Footer />
+</Layout>

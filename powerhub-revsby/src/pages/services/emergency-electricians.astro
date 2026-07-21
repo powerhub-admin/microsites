@@ -1,0 +1,343 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Theme from '../../components/Theme.astro';
+import NavInner from '../../components/NavInner.astro';
+import Footer from '../../components/Footer.astro';
+import PageHero from '../../components/PageHero.astro';
+import Faqs from '../../components/Faqs.astro';
+import ServiceAreas from '../../components/ServiceAreas.astro';
+import Testimonials from '../../components/Testimonials.astro';
+import OutlineButton from '../../components/OutlineButton.astro';
+import Bolt from '../../components/Bolt.astro';
+import { site } from '../../data/site';
+
+const linkClass = 'font-semibold text-brand-secondary underline decoration-brand-accent/50 underline-offset-4 hover:text-brand-accent';
+
+const situations = [
+  { title: 'Complete Power Outages', html: `A total loss of power calls for an emergency electrician in Revesby to <a href="https://www.ausgrid.com.au/Outages/Current-Outages" target="_blank" rel="noopener noreferrer" class="${linkClass}">check the switchboard and meter</a> before safely restoring supply to the property and confirming it is safe.` },
+  { title: 'Safety Switch and RCD Trips', desc: 'Safety switches that keep tripping are investigated to identify the faulty circuit or appliance causing the tripping, rather than simply resetting the switch and hoping the underlying problem does not recur.' },
+  { title: 'Sparking or Burning Power Points', desc: 'Power points that spark, smell of burning or feel warm to touch are isolated and inspected as a priority, since they can signal a serious fire risk inside the wall.' },
+  { title: 'Switchboard and Fuse Box Failures', desc: 'Older switchboards and fuse boxes that fail under load are diagnosed on-site, with a temporary fix or a full upgrade explained in plain language before any quote is confirmed.' },
+  { title: 'Exposed or Damaged Wiring', desc: 'Chewed, scorched, or exposed wiring found in a roof space or wall cavity is immediately isolated to remove the risk of electric shock or fire before permanent repairs are scheduled in full.' },
+  { title: 'Storm and Water Damage Callouts', html: `Water ingress or <a href="https://www.ses.nsw.gov.au/plan-and-prepare/electricity-gas-and-water-safety" target="_blank" rel="noopener noreferrer" class="${linkClass}">storm damage</a> affecting a switchboard, outdoor point, or lighting circuit is assessed for safety before power is reconnected to any affected part of the Revesby property.` },
+  { title: 'No Power to Lighting Circuits', desc: 'Losing power to a single circuit while the rest of the home stays lit points to a tripped breaker or a fault on that lighting circuit, not the whole board.' },
+];
+
+const whyMatters = [
+  { title: 'Preventing Repeat Callouts', desc: 'Diagnosing the actual cause of a power failure or tripped switch, rather than a quick temporary fix, reduces the chance of the same fault causing another emergency callout within weeks.' },
+  { title: 'Protecting Appliances and Devices', desc: 'Unstable power, surges after an outage or a failing safety switch can damage sensitive electronics and appliances, so restoring stable, correctly protected power quickly helps limit further unnecessary household costs.' },
+  { title: 'Reducing Fire and Shock Risk', desc: 'Sparking points, warm switchboards and exposed wiring are common causes of house fires and electric shock, so treating these signs as urgent rather than waiting reduces genuine, avoidable safety risk.' },
+  { title: 'Keeping Records for Insurance Claims', desc: 'A documented emergency repair, including what failed and how it was fixed, gives homeowners a paper trail that can support their own insurance claim if storm or electrical damage is involved.' },
+];
+
+const process = [
+  { n: '01', title: 'Call for Immediate Help', desc: 'Revesby customers call to describe the issue, such as no power, sparks or a tripped switch, in as much detail.' },
+  { n: '02', title: 'Priority Scheduling', desc: 'Emergency calls are prioritised ahead of routine bookings, with same-day attendance arranged wherever possible for urgent safety issues raised.' },
+  { n: '03', title: 'On Site Assessment', desc: 'The electrician inspects the switchboard, wiring or fitting involved and identifies the exact cause before explaining the findings in person.' },
+  { n: '04', title: 'Upfront Emergency Quote', desc: 'A clear price for the repair is confirmed before work begins, so there are no surprise charges once power returns.' },
+  { n: '05', title: 'Safe Restoration and Sign Off', desc: 'Power is restored once the fault is fixed, with the work tested and explained before the electrician leaves the property.' },
+];
+
+const common = [
+  { title: 'Complete Blackouts', desc: "A total loss of power sometimes stems from an issue on the network provider's side rather than inside the home, which may need coordination to resolve fully." },
+  { title: 'Recurring Tripped Switches', desc: 'A safety switch that trips repeatedly, even after resetting, usually points to a specific faulty appliance, damaged cabling or moisture in a power point rather than just a random fault.' },
+  { title: 'Burning Smells or Warm Switchboards', desc: 'A burning smell near the switchboard or a power point that feels warm to touch should be treated as a fire risk and reported immediately rather than left until later.' },
+  { title: 'Power Loss After Storms', html: `Heavy rain or wind sometimes causes water ingress, tree contact or line damage that cuts power to part or all of a property, often needing an <a href="https://www.energy.nsw.gov.au/households/guides-and-helpful-advice-households/what-power-outage-and-what-do" target="_blank" rel="noopener noreferrer" class="${linkClass}">urgent safety check</a> first.` },
+];
+
+const properties = [
+  { title: 'Established Houses', desc: 'Older Revesby homes often have ageing switchboards or wiring, so an emergency callout may reveal an underlying issue that warrants a broader safety check beyond the immediate fault.' },
+  { title: 'Rental and Unit Properties', desc: "Tenants experiencing a power fault are encouraged to contact their property manager and book an electrician, as emergency repairs may fall under a landlord's compliance obligations rather than the tenant's." },
+  { title: 'Small Businesses and Shopfronts', desc: 'A power outage affecting a small business in Revesby can mean lost trade for every hour without electricity, making a fast diagnosis of the switchboard or supply important to arrange.' },
+];
+
+const safety = [
+  { html: 'Fallen or low-hanging power lines should never be approached and should be reported immediately, following NSW guidance on common electrical hazards' },
+  { html: 'Never operate switches or appliances with wet hands or while standing in water, particularly during storm-related outages' },
+  { html: `General electrical hazard awareness for households is also outlined by <a href="https://www.safework.nsw.gov.au/hazards-a-z/electrical-and-power" target="_blank" rel="noopener noreferrer" class="${linkClass}">SafeWork NSW</a>` },
+  { html: `All emergency repairs and any resulting switchboard work are completed in line with <a href="https://www.nsw.gov.au/housing-and-construction/compliance-and-regulation/electricians/electrical-standards-rules-and-notes" target="_blank" rel="noopener noreferrer" class="${linkClass}">AS/NZS 3000 wiring rules</a>` },
+  { html: 'All emergency electrical work is completed under Electrical Supervisor Licence #467291C' },
+];
+
+const whyChoose = [
+  { n: '01', title: 'Same Day Emergency Response', desc: 'Emergency callouts across Revesby are given same-day priority wherever possible, so a licensed electrician can assess and begin resolving urgent power or safety issues as quickly as reasonably practical.' },
+  { n: '02', title: 'Obligation-Free Emergency Quotes', desc: 'Even for urgent callouts, a clear price is confirmed before work begins, so Revesby customers are never pressured into approving repair costs without understanding exactly what they are paying for.' },
+  { n: '03', title: 'Transparent Advice No Pressure', desc: 'Faults are explained honestly in plain language, including cheaper temporary options where genuinely safe, rather than being upsold to the most expensive repair available for the same underlying issue involved.' },
+  { n: '04', title: '100+ Positive Reviews', desc: 'Powerhub Electrical Revesby has built more than 100 positive customer reviews, giving Revesby homeowners a track record to check before trusting someone with an urgent electrical problem in their own home.' },
+];
+
+const emergencyFaqs = [
+  { q: 'How fast can an emergency electrician in Revesby attend my property?', a: 'Emergency electrician Revesby callouts are given same-day priority wherever possible, with the electrician aiming to attend as soon as they can once the issue is reported and confirmed.' },
+  { q: 'What counts as an electrical emergency?', a: 'Complete power loss, sparking outlets, burning smells, warm switchboards and safety switches that will not reset are all treated as emergencies requiring urgent attention rather than a routine booking.' },
+  { q: 'Will I be charged extra for an emergency callout?', a: 'A clear price is confirmed before any work begins, even for urgent jobs, keeping the quote obligation-free until the customer decides whether to proceed with the repair.' },
+  { q: 'Should I turn off the power myself before the electrician arrives?', a: 'If it is safe to do so, switching off the main switch can help, though flooding, sparking or fallen wires should be left alone and reported rather than approached directly.' },
+  { q: 'What if the outage is affecting my whole street, not just my property?', a: "Street-wide outages are usually a network issue rather than a fault inside the home, and checking Ausgrid's outage map first can save an unnecessary emergency callout fee altogether." },
+  { q: 'Do you offer any discount on emergency electrical work in Revesby?', a: 'New Powerhub Electrical Revesby customers save $50 off their first service, and pensioners receive 15% off, discounts that apply just as much to emergency callouts as scheduled work.' },
+];
+---
+<Theme />
+<Layout title="Emergency Electrician Revesby | Powerhub Electrical" description="Need an emergency electrician in Revesby? Powerhub Electrical offers same-day help, obligation-free quotes and $50 off first service. Call 0400 332 331.">
+  <NavInner />
+  <main id="top">
+    <PageHero
+      eyebrow="Same-day rapid response"
+      title="Emergency electrician"
+      accent="Revesby"
+      sub="An emergency electrician in Revesby should respond fast when power fails or safety switches trip. Same-day service is backed by 25+ years of experience."
+      crumbs={[{ label: 'Home', href: '/' }, { label: 'Services', href: '/services' }, { label: 'Emergency Electricians' }]}
+      img="/images/powerhub/services/emergency-electricians.webp"
+      badges={['Same-day service', 'Obligation-free quotes', 'Licensed #467291C']}
+    />
+
+    <!-- WHAT TO EXPECT -->
+    <section class="relative bg-brand-surface py-20 sm:py-28">
+      <div class="mx-auto grid max-w-7xl items-center gap-12 px-5 sm:px-8 lg:grid-cols-[1.05fr_0.95fr] lg:gap-16">
+        <div class="reveal">
+          <p class="mb-4 flex items-center gap-3 font-body text-xs font-semibold uppercase tracking-[0.3em] text-brand-muted">
+            <span class="inline-block h-px w-10 bg-brand-accent"></span> What to expect
+          </p>
+          <h2 class="font-heading text-3xl font-black uppercase leading-[1.05] tracking-[-0.01em] text-brand-text sm:text-4xl">
+            Fast help when something goes wrong <span class="text-brand-secondary">in Revesby</span>
+          </h2>
+          <p class="mt-6 font-body text-lg font-medium leading-relaxed text-brand-secondary">
+            Same-day response, obligation-free quotes and 100+ positive reviews across greater Sydney.
+          </p>
+          <p class="mt-4 font-body text-lg leading-relaxed text-brand-muted">
+            Power outages, sparking outlets and tripped safety switches cannot always wait for a scheduled appointment. As an emergency electrician in Revesby, Powerhub Electrical aims to get a licensed technician on site the same day the issue is reported.
+          </p>
+          <div class="mt-8 flex flex-col gap-4 sm:flex-row sm:items-center">
+            <a href={site.phoneHref} class="sweep-btn group relative inline-flex items-center justify-center gap-2 overflow-hidden px-7 py-4 font-heading text-base font-bold text-brand-bg" style="clip-path: polygon(6% 0, 100% 0, 94% 100%, 0 100%); background: var(--color-brand-accent);">
+              <span class="relative z-10">Call {site.phoneDisplay}</span><Bolt class="relative z-10 h-4 w-4" />
+            </a>
+            <OutlineButton href="/contact-us" class="px-7 py-4 text-base">Get a free quote</OutlineButton>
+          </div>
+        </div>
+
+        <div class="reveal relative" style="transition-delay:120ms;">
+          <div class="relative bg-brand-secondary/25 p-0.5 shadow-2xl shadow-black/60" style="clip-path: polygon(0 0, 100% 0, 100% 90%, 90% 100%, 0 100%);">
+            <div class="h-full w-full overflow-hidden" style="clip-path: polygon(0 0, 100% 0, 100% 90%, 90% 100%, 0 100%);">
+              <img src="/images/powerhub/services/emergency-electricians.webp" alt="Kitchen lighting and cooktop wiring by Powerhub Electrical in Revesby" class="h-full w-full object-cover" loading="lazy" />
+            </div>
+          </div>
+          <span class="absolute -bottom-4 -right-3 h-24 w-1.5 bg-brand-accent"></span>
+        </div>
+      </div>
+    </section>
+
+    <!-- SITUATIONS -->
+    <section class="relative bg-brand-bg py-20 sm:py-28">
+      <div class="mx-auto max-w-7xl px-5 sm:px-8">
+        <div class="reveal mb-4 max-w-2xl">
+          <p class="mb-4 flex items-center gap-3 font-body text-xs font-semibold uppercase tracking-[0.3em] text-brand-muted">
+            <span class="inline-block h-px w-10 bg-brand-accent"></span> What we handle
+          </p>
+          <h2 class="font-heading text-3xl font-black uppercase leading-[1.02] tracking-[-0.01em] text-brand-text sm:text-4xl">
+            Emergency situations we respond to <span class="text-brand-secondary">across Revesby</span>
+          </h2>
+        </div>
+        <p class="reveal mb-12 max-w-2xl font-body text-lg leading-relaxed text-brand-muted">Powerhub Electrical responds to a wide range of emergency situations across Revesby:</p>
+        <div class="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+          {situations.map((s, i) => (
+            <article class="reveal border border-white/8 bg-brand-surface p-6 transition-colors hover:border-brand-accent/50" style={`clip-path: polygon(0 0, 100% 0, 97% 100%, 0 100%); transition-delay:${(i % 3) * 70}ms`}>
+              <span class="mb-4 inline-flex h-9 w-9 items-center justify-center bg-brand-accent/15 text-brand-accent" style="clip-path: polygon(0 0, 100% 0, 85% 100%, 0 100%);"><Bolt class="h-5 w-5" /></span>
+              <h3 class="font-heading text-lg font-black uppercase tracking-[-0.01em] text-brand-text">{s.title}</h3>
+              {s.html
+                ? <p class="mt-2 font-body text-sm leading-relaxed text-brand-muted" set:html={s.html}></p>
+                : <p class="mt-2 font-body text-sm leading-relaxed text-brand-muted">{s.desc}</p>}
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- WHY ACTING QUICKLY MATTERS -->
+    <section class="relative bg-brand-surface py-20 sm:py-28">
+      <div class="mx-auto max-w-7xl px-5 sm:px-8">
+        <div class="reveal mb-4 max-w-2xl">
+          <p class="mb-4 flex items-center gap-3 font-body text-xs font-semibold uppercase tracking-[0.3em] text-brand-muted">
+            <span class="inline-block h-px w-10 bg-brand-accent"></span> Why it matters
+          </p>
+          <h2 class="font-heading text-3xl font-black uppercase leading-[1.02] tracking-[-0.01em] text-brand-text sm:text-4xl">
+            Why treating electrical emergencies <span class="text-brand-secondary">properly matters</span>
+          </h2>
+        </div>
+        <p class="reveal mb-12 max-w-2xl font-body text-lg leading-relaxed text-brand-muted">Treating electrical emergencies properly the first time protects both safety and long-term property value:</p>
+        <div class="grid gap-5 sm:grid-cols-2">
+          {whyMatters.map((w, i) => (
+            <article class="reveal border border-white/8 bg-brand-bg p-6 transition-colors hover:border-brand-accent/50" style={`clip-path: polygon(0 0, 100% 0, 98% 100%, 0 100%); transition-delay:${(i % 2) * 80}ms`}>
+              <span class="mb-4 inline-flex h-9 w-9 items-center justify-center bg-brand-accent/15 text-brand-accent" style="clip-path: polygon(0 0, 100% 0, 85% 100%, 0 100%);"><Bolt class="h-5 w-5" /></span>
+              <h3 class="font-heading text-lg font-black uppercase tracking-[-0.01em] text-brand-text">{w.title}</h3>
+              <p class="mt-2 font-body text-sm leading-relaxed text-brand-muted">{w.desc}</p>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- PROCESS -->
+    <section class="relative overflow-hidden bg-brand-bg py-20 sm:py-28">
+      <div class="mx-auto grid max-w-7xl items-start gap-12 px-5 sm:px-8 lg:grid-cols-[1.1fr_0.9fr] lg:gap-16">
+        <div>
+          <div class="reveal mb-4 max-w-xl">
+            <p class="mb-4 flex items-center gap-3 font-body text-xs font-semibold uppercase tracking-[0.3em] text-brand-muted">
+              <span class="inline-block h-px w-10 bg-brand-accent"></span> How we work
+            </p>
+            <h2 class="font-heading text-3xl font-black uppercase leading-[1.02] tracking-[-0.01em] text-brand-text sm:text-4xl">
+              Our emergency callout process <span class="text-brand-secondary">for Revesby properties</span>
+            </h2>
+          </div>
+          <p class="reveal mb-10 max-w-xl font-body text-base leading-relaxed text-brand-muted">Responding to an emergency electrician callout in Revesby generally follows these steps:</p>
+          <ol class="relative space-y-8 border-l border-brand-secondary/20 pl-8">
+            {process.map((s, i) => (
+              <li class="reveal relative" style={`transition-delay: ${i * 80}ms;`}>
+                <span class="absolute -left-[42px] grid h-8 w-8 place-items-center font-heading text-xs font-black text-brand-bg" style="clip-path: polygon(20% 0, 100% 0, 80% 100%, 0 100%); background: var(--color-brand-accent);">{s.n}</span>
+                <h3 class="font-heading text-xl font-black uppercase leading-tight tracking-tight text-brand-secondary">{s.title}</h3>
+                <p class="mt-2 max-w-md font-body text-base leading-relaxed text-brand-muted">{s.desc}</p>
+              </li>
+            ))}
+          </ol>
+        </div>
+        <div class="reveal relative" style="transition-delay:120ms;">
+          <div class="relative bg-brand-secondary/25 p-0.5 shadow-2xl shadow-black/60" style="clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%, 0 8%);">
+            <div class="relative h-full w-full overflow-hidden" style="clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%, 0 8%);">
+              <img src="/images/powerhub/services/emergency-electricians-2.webp" alt="Powerhub Electrical responding to an emergency callout in Revesby" class="h-full w-full object-cover" loading="lazy" />
+              <div class="absolute inset-0 bg-gradient-to-tr from-brand-bg/50 to-transparent"></div>
+            </div>
+          </div>
+          <span class="absolute -bottom-4 -left-4 h-20 w-1.5 bg-brand-accent lg:h-28"></span>
+        </div>
+      </div>
+    </section>
+
+    <!-- COMMON EMERGENCIES -->
+    <section class="relative bg-brand-surface py-20 sm:py-28">
+      <div class="mx-auto max-w-7xl px-5 sm:px-8">
+        <div class="reveal mb-4 max-w-2xl">
+          <p class="mb-4 flex items-center gap-3 font-body text-xs font-semibold uppercase tracking-[0.3em] text-brand-muted">
+            <span class="inline-block h-px w-10 bg-brand-accent"></span> Recurring problems
+          </p>
+          <h2 class="font-heading text-3xl font-black uppercase leading-[1.02] tracking-[-0.01em] text-brand-text sm:text-4xl">
+            Common emergency problems <span class="text-brand-secondary">reported across Revesby</span>
+          </h2>
+        </div>
+        <p class="reveal mb-12 max-w-2xl font-body text-lg leading-relaxed text-brand-muted">These are the most frequent emergency issues reported by homeowners and small businesses across Revesby:</p>
+        <div class="grid gap-5 sm:grid-cols-2">
+          {common.map((c, i) => (
+            <article class="reveal border border-white/8 bg-brand-bg p-6 transition-colors hover:border-brand-accent/50" style={`clip-path: polygon(0 0, 100% 0, 98% 100%, 0 100%); transition-delay:${(i % 2) * 80}ms`}>
+              <span class="mb-4 inline-flex h-9 w-9 items-center justify-center bg-brand-accent/15 text-brand-accent" style="clip-path: polygon(0 0, 100% 0, 85% 100%, 0 100%);"><Bolt class="h-5 w-5" /></span>
+              <h3 class="font-heading text-lg font-black uppercase tracking-[-0.01em] text-brand-text">{c.title}</h3>
+              {c.html
+                ? <p class="mt-2 font-body text-sm leading-relaxed text-brand-muted" set:html={c.html}></p>
+                : <p class="mt-2 font-body text-sm leading-relaxed text-brand-muted">{c.desc}</p>}
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- PROPERTIES -->
+    <section class="relative bg-brand-bg py-20 sm:py-28">
+      <div class="mx-auto max-w-7xl px-5 sm:px-8">
+        <div class="reveal mb-4 max-w-2xl">
+          <p class="mb-4 flex items-center gap-3 font-body text-xs font-semibold uppercase tracking-[0.3em] text-brand-muted">
+            <span class="inline-block h-px w-10 bg-brand-accent"></span> Where we work
+          </p>
+          <h2 class="font-heading text-3xl font-black uppercase leading-[1.02] tracking-[-0.01em] text-brand-text sm:text-4xl">
+            How emergency work differs <span class="text-brand-secondary">by property type in Revesby</span>
+          </h2>
+        </div>
+        <p class="reveal mb-12 max-w-2xl font-body text-lg leading-relaxed text-brand-muted">Emergency electrical work looks a little different depending on the type of Revesby property involved:</p>
+        <div class="grid gap-5 sm:grid-cols-3">
+          {properties.map((p, i) => (
+            <article class="reveal border border-white/8 bg-brand-surface p-6 transition-colors hover:border-brand-accent/50" style={`clip-path: polygon(0 0, 100% 0, 97% 100%, 0 100%); transition-delay:${i * 70}ms`}>
+              <span class="mb-4 inline-flex h-9 w-9 items-center justify-center bg-brand-accent/15 text-brand-accent" style="clip-path: polygon(0 0, 100% 0, 85% 100%, 0 100%);"><Bolt class="h-5 w-5" /></span>
+              <h3 class="font-heading text-lg font-black uppercase tracking-[-0.01em] text-brand-text">{p.title}</h3>
+              <p class="mt-2 font-body text-sm leading-relaxed text-brand-muted">{p.desc}</p>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- SAFETY BASICS -->
+    <section class="relative bg-brand-surface py-20 sm:py-28">
+      <div class="mx-auto max-w-4xl px-5 sm:px-8">
+        <div class="reveal mb-4">
+          <p class="mb-4 flex items-center gap-3 font-body text-xs font-semibold uppercase tracking-[0.3em] text-brand-muted">
+            <span class="inline-block h-px w-10 bg-brand-accent"></span> Safety and compliance
+          </p>
+          <h2 class="font-heading text-3xl font-black uppercase leading-[1.02] tracking-[-0.01em] text-brand-text sm:text-4xl">
+            Safety and compliance <span class="text-brand-secondary">during an electrical emergency</span>
+          </h2>
+        </div>
+        <p class="reveal mb-8 font-body text-lg leading-relaxed text-brand-muted">A few safety points Powerhub Electrical wants Revesby residents to know before help arrives:</p>
+        <ul class="space-y-4">
+          {safety.map((s, i) => (
+            <li class="reveal flex items-start gap-3 border border-white/8 bg-brand-bg p-5" style={`clip-path: polygon(0 0, 100% 0, 99% 100%, 0 100%); transition-delay:${(i % 5) * 50}ms`}>
+              <span class="mt-0.5 grid h-7 w-7 shrink-0 place-items-center bg-brand-accent/15 text-brand-accent" style="clip-path: polygon(0 0, 100% 0, 80% 100%, 0 100%);"><Bolt class="h-4 w-4" /></span>
+              <span class="font-body text-base leading-relaxed text-brand-text" set:html={s.html}></span>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </section>
+
+    <!-- WHY CHOOSE -->
+    <section class="relative bg-brand-bg py-20 sm:py-28">
+      <div class="mx-auto max-w-7xl px-5 sm:px-8">
+        <div class="reveal mb-12 max-w-2xl">
+          <p class="mb-4 flex items-center gap-3 font-body text-xs font-semibold uppercase tracking-[0.3em] text-brand-muted">
+            <span class="inline-block h-px w-10 bg-brand-accent"></span> Why choose us
+          </p>
+          <h2 class="font-heading text-3xl font-black uppercase leading-[1.02] tracking-[-0.01em] text-brand-text sm:text-4xl">
+            What sets Powerhub Electrical Revesby <span class="text-brand-secondary">apart in an emergency</span>
+          </h2>
+          <p class="mt-4 font-body text-lg leading-relaxed text-brand-muted">Here's what Revesby customers can expect from Powerhub Electrical during an emergency call:</p>
+        </div>
+        <div class="grid gap-px overflow-hidden border border-white/5 bg-white/5 sm:grid-cols-2">
+          {whyChoose.map((p, i) => (
+            <div class="reveal group relative bg-brand-surface p-8 transition-colors hover:bg-brand-bg" style={`transition-delay: ${(i % 2) * 90}ms;`}>
+              <div class="mb-4 flex items-center justify-between">
+                <span class="font-heading text-3xl font-black tabular-nums text-brand-secondary/30 transition-colors group-hover:text-brand-accent">{p.n}</span>
+                <span class="grid h-9 w-9 place-items-center text-brand-bg" style="clip-path: polygon(0 0, 100% 0, 100% 70%, 70% 100%, 0 100%); background: var(--color-brand-secondary);"><Bolt class="h-4 w-4" /></span>
+              </div>
+              <h3 class="font-heading text-lg font-bold uppercase leading-tight tracking-tight text-brand-text">{p.title}</h3>
+              <p class="mt-2 font-body text-base leading-relaxed text-brand-muted">{p.desc}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <ServiceAreas />
+    <Testimonials />
+
+    <!-- CTA -->
+    <section class="relative overflow-hidden bg-brand-bg py-28">
+      <img src="/images/powerhub/home/cta.webp" alt="" aria-hidden="true" class="absolute inset-0 h-full w-full object-cover opacity-30" />
+      <div class="absolute inset-0" style="background: radial-gradient(circle at 30% 50%, rgba(255,106,0,0.32), transparent 55%), linear-gradient(to right, var(--color-brand-bg) 5%, rgba(23,24,27,0.7) 60%);"></div>
+      <div class="pointer-events-none absolute inset-0 opacity-[0.08]" style="background-image: linear-gradient(90deg, var(--color-brand-secondary) 1px, transparent 1px); background-size: 50px 50px;"></div>
+      <div class="relative mx-auto max-w-4xl px-5 text-center sm:px-8">
+        <p class="reveal mb-5 inline-flex items-center gap-2 border border-brand-accent/50 bg-brand-accent/10 px-4 py-1.5 font-heading text-xs font-bold uppercase tracking-widest text-brand-accent pulse-glow">
+          <Bolt class="h-3.5 w-3.5" /> same-day emergency callouts
+        </p>
+        <h2 class="reveal font-heading text-[clamp(2rem,5.5vw,3.4rem)] font-black uppercase leading-[1.0] tracking-[-0.01em] text-brand-text" style="transition-delay:80ms;">
+          No power or a tripped switch <span class="text-brand-accent">right now?</span>
+        </h2>
+        <p class="reveal mx-auto mt-6 max-w-2xl font-body text-lg leading-relaxed text-brand-muted" style="transition-delay:160ms;">
+          Call Powerhub Electrical Revesby on {site.phoneDisplay} for an emergency electrician in Revesby when the power fails, a safety switch keeps tripping or something feels unsafe. New customers save $50 on their first service, with every quote kept obligation-free.
+        </p>
+        <div class="reveal mt-9 flex flex-col items-center justify-center gap-4 sm:flex-row" style="transition-delay:240ms;">
+          <a href={site.phoneHref} class="sweep-btn group relative inline-flex items-center justify-center gap-2 overflow-hidden px-8 py-4 font-heading text-base font-bold text-brand-bg" style="clip-path: polygon(6% 0, 100% 0, 94% 100%, 0 100%); background: var(--color-brand-accent);">
+            <span class="relative z-10">Call {site.phoneDisplay}</span>
+            <Bolt class="relative z-10 h-4 w-4" />
+          </a>
+          <OutlineButton href="/contact-us" class="px-8 py-4 text-base">Get a Free Quote</OutlineButton>
+        </div>
+      </div>
+    </section>
+
+    <Faqs heading="Frequently asked questions" items={emergencyFaqs} bg="bg-brand-surface" />
+  </main>
+  <Footer />
+</Layout>

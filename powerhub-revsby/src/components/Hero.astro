@@ -1,0 +1,103 @@
+---
+import Bolt from './Bolt.astro';
+import OutlineButton from './OutlineButton.astro';
+import { site } from '../data/site';
+
+const bullets = [
+  '$50 off your first service',
+  '15% pensioner discount',
+  'Free 5-star electrical safety inspection with every booking',
+  'Electrical Supervisor Licence #467291C',
+  '100+ positive reviews',
+  'Same-day service across Revesby',
+];
+---
+<section id="top" class="relative min-h-[100svh] overflow-hidden bg-brand-bg pt-28 lg:pt-24">
+  <!-- low-opacity circuit grid -->
+  <div class="pointer-events-none absolute inset-0 opacity-[0.06]" style="background-image: linear-gradient(var(--color-brand-secondary) 1px, transparent 1px), linear-gradient(90deg, var(--color-brand-secondary) 1px, transparent 1px); background-size: 48px 48px;"></div>
+
+  <div class="relative mx-auto grid min-h-[100svh] max-w-7xl items-center gap-10 px-5 sm:px-8 lg:grid-cols-[1.05fr_0.95fr] lg:gap-6 lg:px-8">
+    <!-- LEFT: text -->
+    <div class="relative z-10 py-10 lg:py-0">
+      <p data-rise class="mb-5 flex items-center gap-3 font-body text-xs font-semibold uppercase tracking-[0.3em] text-brand-muted">
+        <span class="inline-block h-px w-10 bg-brand-accent"></span>
+        Revesby &amp; greater Sydney
+      </p>
+      <h1 class="font-heading font-black uppercase leading-[0.92] tracking-[-0.02em] text-[clamp(2.6rem,8vw,5.6rem)]">
+        <span data-flash class="block text-brand-secondary">Trusted</span>
+        <span data-flash class="block text-brand-secondary">electrician</span>
+        <span data-flash class="block text-brand-text">Rev<span class="text-brand-accent">esby</span></span>
+      </h1>
+      <p data-rise class="mt-7 max-w-xl font-body text-base leading-relaxed text-brand-muted sm:text-lg">
+        An electrician in Revesby should offer a fast response with fully licensed, compliant work. Every job is backed by 25+ years of combined trade experience.
+      </p>
+
+      <ul data-rise class="mt-8 grid max-w-xl gap-x-6 gap-y-2.5 sm:grid-cols-2">
+        {bullets.map((b) => (
+          <li class="flex items-start gap-2.5 font-body text-sm text-brand-text">
+            <span class="mt-0.5 grid h-5 w-5 shrink-0 place-items-center bg-brand-accent/15 text-brand-accent" style="clip-path: polygon(0 0, 100% 0, 80% 100%, 0 100%);"><Bolt class="h-3 w-3" /></span>
+            {b}
+          </li>
+        ))}
+      </ul>
+
+      <div data-rise class="mt-9 flex flex-col gap-4 sm:flex-row sm:items-center">
+        <a href="/contact-us" class="sweep-btn group relative inline-flex items-center justify-center gap-2 overflow-hidden px-7 py-4 font-heading text-base font-bold text-brand-bg" style="clip-path: polygon(6% 0, 100% 0, 94% 100%, 0 100%); background: var(--color-brand-accent);">
+          <span class="relative z-10">Book Now</span>
+          <Bolt class="relative z-10 h-4 w-4" />
+        </a>
+        <OutlineButton href={site.phoneHref} class="px-7 py-4 text-base">
+          Call {site.phoneDisplay}
+        </OutlineButton>
+      </div>
+    </div>
+
+    <!-- RIGHT: clipped image panel -->
+    <div data-panel class="relative hidden h-[78vh] self-stretch lg:block">
+      <div class="absolute inset-0" style="clip-path: polygon(14% 0, 100% 0, 100% 100%, 0 100%);">
+        <img src="/images/powerhub/home/hero.webp" alt="Electrician in Revesby carrying out a switchboard upgrade for Powerhub Electrical" class="h-full w-full object-cover" style="object-position: 20% center;" />
+        <div class="absolute inset-0 bg-gradient-to-r from-brand-bg via-brand-bg/10 to-transparent"></div>
+      </div>
+      <!-- overlapping smaller panel -->
+      <div class="absolute -bottom-8 left-2 w-52 bg-brand-accent p-0.5 shadow-2xl shadow-black/60" style="clip-path: polygon(10% 0, 100% 0, 90% 100%, 0 100%);">
+        <div class="overflow-hidden" style="clip-path: polygon(10% 0, 100% 0, 90% 100%, 0 100%);">
+          <img src="/images/powerhub/services/Our-committment-to-success.webp" alt="Powerhub Electrical's commitment to quality electrical work in Revesby" class="h-40 w-full object-cover" />
+        </div>
+      </div>
+      <span class="pulse-glow absolute right-6 top-8 inline-flex items-center gap-2 bg-brand-accent px-4 py-2 font-heading text-sm font-bold text-brand-bg" style="clip-path: polygon(8% 0, 100% 0, 92% 100%, 0 100%);">
+        <Bolt class="h-4 w-4" /> Same-Day Service
+      </span>
+    </div>
+  </div>
+</section>
+
+<style>
+  [data-flash] { opacity: 0; transform: translateY(0.4em); }
+  [data-rise] { opacity: 0; transform: translateY(18px); }
+  [data-panel] { opacity: 0; transform: translateX(40px); }
+
+  .nsb-flash { animation: flashIn 0.5s cubic-bezier(0.2, 0.8, 0.2, 1) forwards; }
+  .nsb-rise { animation: riseIn 0.6s cubic-bezier(0.2, 0.8, 0.2, 1) forwards; }
+  .nsb-panel { animation: panelIn 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) forwards; }
+
+  @keyframes flashIn {
+    0% { opacity: 0; transform: translateY(0.4em); text-shadow: 0 0 0 transparent; }
+    55% { opacity: 1; text-shadow: 0 0 26px var(--color-brand-secondary); }
+    100% { opacity: 1; transform: translateY(0); text-shadow: 0 0 0 transparent; }
+  }
+  @keyframes riseIn { to { opacity: 1; transform: translateY(0); } }
+  @keyframes panelIn { to { opacity: 1; transform: translateX(0); } }
+
+  @media (prefers-reduced-motion: reduce) {
+    [data-flash], [data-rise], [data-panel] { opacity: 1; transform: none; }
+  }
+</style>
+
+<script>
+  const flashes = document.querySelectorAll<HTMLElement>('[data-flash]');
+  const rises = document.querySelectorAll<HTMLElement>('[data-rise]');
+  const panel = document.querySelector<HTMLElement>('[data-panel]');
+  flashes.forEach((el, i) => { el.style.animationDelay = `${0.15 + i * 0.13}s`; el.classList.add('nsb-flash'); });
+  rises.forEach((el, i) => { el.style.animationDelay = `${0.6 + i * 0.12}s`; el.classList.add('nsb-rise'); });
+  if (panel) { panel.style.animationDelay = '0.3s'; panel.classList.add('nsb-panel'); }
+</script>

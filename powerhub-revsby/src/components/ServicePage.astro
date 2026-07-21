@@ -1,0 +1,293 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Theme from './Theme.astro';
+import NavInner from './NavInner.astro';
+import Footer from './Footer.astro';
+import PageHero from './PageHero.astro';
+import Faqs from './Faqs.astro';
+import ServiceAreas from './ServiceAreas.astro';
+import Testimonials from './Testimonials.astro';
+import OutlineButton from './OutlineButton.astro';
+import Bolt from './Bolt.astro';
+import { site } from '../data/site';
+import type { ServicePageData } from '../data/service-pages/types';
+
+interface Props { page: ServicePageData }
+const { page } = Astro.props;
+
+// Deterministically highlight "Revesby" within a heading (keeps text verbatim).
+function parts(text: string) {
+  const i = text.indexOf('Revesby');
+  if (i === -1) return { pre: text, mid: '', post: '' };
+  return { pre: text.slice(0, i), mid: 'Revesby', post: text.slice(i + 'Revesby'.length) };
+}
+function esc(s: string) {
+  return s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+}
+function renderHeading(text: string, cta = false) {
+  const cls = cta ? 'text-brand-accent' : 'text-brand-secondary';
+  const i = text.indexOf('Revesby');
+  if (i === -1) return esc(text);
+  return esc(text.slice(0, i)) + `<span class="${cls}">Revesby</span>` + esc(text.slice(i + 'Revesby'.length));
+}
+const h1 = parts(page.h1);
+const processImg = page.processImg || '/images/powerhub/home/why-choose.webp';
+const introImg = page.introImg || page.heroImg;
+---
+<Theme />
+<Layout title={page.metaTitle} description={page.metaDescription}>
+  <NavInner />
+  <main id="top">
+    <PageHero
+      eyebrow={page.eyebrow}
+      title={h1.pre.trim()}
+      accent={h1.mid ? (h1.mid + h1.post) : undefined}
+      sub={page.supporting}
+      crumbs={[{ label: 'Home', href: '/' }, { label: 'Services', href: '/services' }, { label: page.navLabel }]}
+      img={page.heroImg}
+      badges={page.badges}
+    />
+
+    <!-- INTRO -->
+    <section class="relative bg-brand-surface py-20 sm:py-28">
+      <div class="mx-auto grid max-w-7xl items-center gap-12 px-5 sm:px-8 lg:grid-cols-[1.05fr_0.95fr] lg:gap-16">
+        <div class="reveal">
+          <p class="mb-4 flex items-center gap-3 font-body text-xs font-semibold uppercase tracking-[0.3em] text-brand-muted">
+            <span class="inline-block h-px w-10 bg-brand-accent"></span> Overview
+          </p>
+          <h2 class="font-heading text-3xl font-black uppercase leading-[1.05] tracking-[-0.01em] text-brand-text sm:text-4xl">
+            <Fragment set:html={renderHeading(page.introHeading)} />
+          </h2>
+          <p class="mt-6 font-body text-lg font-medium leading-relaxed text-brand-secondary">{page.introSub}</p>
+          <p class="mt-4 font-body text-lg leading-relaxed text-brand-muted">{page.introBody}</p>
+          <div class="mt-8 flex flex-col gap-4 sm:flex-row sm:items-center">
+            <a href={site.phoneHref} class="sweep-btn group relative inline-flex items-center justify-center gap-2 overflow-hidden px-7 py-4 font-heading text-base font-bold text-brand-bg" style="clip-path: polygon(6% 0, 100% 0, 94% 100%, 0 100%); background: var(--color-brand-accent);">
+              <span class="relative z-10">Call {site.phoneDisplay}</span><Bolt class="relative z-10 h-4 w-4" />
+            </a>
+            <OutlineButton href="/contact-us" class="px-7 py-4 text-base">Get a free quote</OutlineButton>
+          </div>
+        </div>
+
+        <div class="reveal relative" style="transition-delay:120ms;">
+          <div class="relative bg-brand-secondary/25 p-0.5 shadow-2xl shadow-black/60" style="clip-path: polygon(0 0, 100% 0, 100% 90%, 90% 100%, 0 100%);">
+            <div class="h-full w-full overflow-hidden" style="clip-path: polygon(0 0, 100% 0, 100% 90%, 90% 100%, 0 100%);">
+              <img src={introImg} alt={`${page.navLabel} by Powerhub Electrical in Revesby`} class="h-full w-full object-cover" loading="lazy" />
+            </div>
+          </div>
+          <span class="absolute -bottom-4 -right-3 h-24 w-1.5 bg-brand-accent"></span>
+        </div>
+      </div>
+    </section>
+
+    <!-- CORE SERVICES -->
+    <section class="relative bg-brand-bg py-20 sm:py-28">
+      <div class="mx-auto max-w-7xl px-5 sm:px-8">
+        <div class="reveal mb-4 max-w-2xl">
+          <p class="mb-4 flex items-center gap-3 font-body text-xs font-semibold uppercase tracking-[0.3em] text-brand-muted">
+            <span class="inline-block h-px w-10 bg-brand-accent"></span> What we do
+          </p>
+          <h2 class="font-heading text-3xl font-black uppercase leading-[1.02] tracking-[-0.01em] text-brand-text sm:text-4xl">
+            <Fragment set:html={renderHeading(page.coreHeading)} />
+          </h2>
+        </div>
+        <p class="reveal mb-12 max-w-2xl font-body text-lg leading-relaxed text-brand-muted">{page.coreLeadIn}</p>
+        <div class="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+          {page.coreItems.map((s, i) => (
+            <article class="reveal border border-white/8 bg-brand-surface p-6 transition-colors hover:border-brand-accent/50" style={`clip-path: polygon(0 0, 100% 0, 97% 100%, 0 100%); transition-delay:${(i % 3) * 70}ms`}>
+              <span class="mb-4 inline-flex h-9 w-9 items-center justify-center bg-brand-accent/15 text-brand-accent" style="clip-path: polygon(0 0, 100% 0, 85% 100%, 0 100%);"><Bolt class="h-5 w-5" /></span>
+              <h3 class="font-heading text-lg font-black uppercase tracking-[-0.01em] text-brand-text">{s.title}</h3>
+              {s.html ? <p class="mt-2 font-body text-sm leading-relaxed text-brand-muted" set:html={s.html}></p> : <p class="mt-2 font-body text-sm leading-relaxed text-brand-muted">{s.desc}</p>}
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- WHY IT MATTERS -->
+    <section class="relative bg-brand-surface py-20 sm:py-28">
+      <div class="mx-auto max-w-7xl px-5 sm:px-8">
+        <div class="reveal mb-4 max-w-2xl">
+          <p class="mb-4 flex items-center gap-3 font-body text-xs font-semibold uppercase tracking-[0.3em] text-brand-muted">
+            <span class="inline-block h-px w-10 bg-brand-accent"></span> Why it matters
+          </p>
+          <h2 class="font-heading text-3xl font-black uppercase leading-[1.02] tracking-[-0.01em] text-brand-text sm:text-4xl">
+            <Fragment set:html={renderHeading(page.whyHeading)} />
+          </h2>
+        </div>
+        <p class="reveal mb-12 max-w-2xl font-body text-lg leading-relaxed text-brand-muted">{page.whyLeadIn}</p>
+        <div class="grid gap-5 sm:grid-cols-2">
+          {page.whyItems.map((s, i) => (
+            <article class="reveal border border-white/8 bg-brand-bg p-6 transition-colors hover:border-brand-accent/50" style={`clip-path: polygon(0 0, 100% 0, 98% 100%, 0 100%); transition-delay:${(i % 2) * 80}ms`}>
+              <span class="mb-4 inline-flex h-9 w-9 items-center justify-center bg-brand-accent/15 text-brand-accent" style="clip-path: polygon(0 0, 100% 0, 85% 100%, 0 100%);"><Bolt class="h-5 w-5" /></span>
+              <h3 class="font-heading text-lg font-black uppercase tracking-[-0.01em] text-brand-text">{s.title}</h3>
+              {s.html ? <p class="mt-2 font-body text-sm leading-relaxed text-brand-muted" set:html={s.html}></p> : <p class="mt-2 font-body text-sm leading-relaxed text-brand-muted">{s.desc}</p>}
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- PROCESS -->
+    <section class="relative overflow-hidden bg-brand-bg py-20 sm:py-28">
+      <div class="mx-auto grid max-w-7xl items-start gap-12 px-5 sm:px-8 lg:grid-cols-[1.1fr_0.9fr] lg:gap-16">
+        <div>
+          <div class="reveal mb-4 max-w-xl">
+            <p class="mb-4 flex items-center gap-3 font-body text-xs font-semibold uppercase tracking-[0.3em] text-brand-muted">
+              <span class="inline-block h-px w-10 bg-brand-accent"></span> How we work
+            </p>
+            <h2 class="font-heading text-3xl font-black uppercase leading-[1.02] tracking-[-0.01em] text-brand-text sm:text-4xl">
+              <Fragment set:html={renderHeading(page.processHeading)} />
+            </h2>
+          </div>
+          <p class="reveal mb-10 max-w-xl font-body text-base leading-relaxed text-brand-muted">{page.processLeadIn}</p>
+          <ol class="relative space-y-8 border-l border-brand-secondary/20 pl-8">
+            {page.processSteps.map((s, i) => (
+              <li class="reveal relative" style={`transition-delay: ${i * 80}ms;`}>
+                <span class="absolute -left-[42px] grid h-8 w-8 place-items-center font-heading text-xs font-black text-brand-bg" style="clip-path: polygon(20% 0, 100% 0, 80% 100%, 0 100%); background: var(--color-brand-accent);">{s.n}</span>
+                <h3 class="font-heading text-xl font-black uppercase leading-tight tracking-tight text-brand-secondary">{s.title}</h3>
+                {s.html ? <p class="mt-2 max-w-md font-body text-base leading-relaxed text-brand-muted" set:html={s.html}></p> : <p class="mt-2 max-w-md font-body text-base leading-relaxed text-brand-muted">{s.desc}</p>}
+              </li>
+            ))}
+          </ol>
+        </div>
+        <div class="reveal relative" style="transition-delay:120ms;">
+          <div class="relative bg-brand-secondary/25 p-0.5 shadow-2xl shadow-black/60" style="clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%, 0 8%);">
+            <div class="relative h-full w-full overflow-hidden" style="clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%, 0 8%);">
+              <img src={processImg} alt={`${page.navLabel} by Powerhub Electrical in Revesby`} class="h-full w-full object-cover" loading="lazy" />
+              <div class="absolute inset-0 bg-gradient-to-tr from-brand-bg/50 to-transparent"></div>
+            </div>
+          </div>
+          <span class="absolute -bottom-4 -left-4 h-20 w-1.5 bg-brand-accent lg:h-28"></span>
+        </div>
+      </div>
+    </section>
+
+    <!-- COMMON PROBLEMS -->
+    <section class="relative bg-brand-surface py-20 sm:py-28">
+      <div class="mx-auto max-w-7xl px-5 sm:px-8">
+        <div class="reveal mb-4 max-w-2xl">
+          <p class="mb-4 flex items-center gap-3 font-body text-xs font-semibold uppercase tracking-[0.3em] text-brand-muted">
+            <span class="inline-block h-px w-10 bg-brand-accent"></span> Recurring issues
+          </p>
+          <h2 class="font-heading text-3xl font-black uppercase leading-[1.02] tracking-[-0.01em] text-brand-text sm:text-4xl">
+            <Fragment set:html={renderHeading(page.problemsHeading)} />
+          </h2>
+        </div>
+        <p class="reveal mb-12 max-w-2xl font-body text-lg leading-relaxed text-brand-muted">{page.problemsLeadIn}</p>
+        <div class="grid gap-5 sm:grid-cols-2">
+          {page.problemsItems.map((s, i) => (
+            <article class="reveal border border-white/8 bg-brand-bg p-6 transition-colors hover:border-brand-accent/50" style={`clip-path: polygon(0 0, 100% 0, 98% 100%, 0 100%); transition-delay:${(i % 2) * 80}ms`}>
+              <span class="mb-4 inline-flex h-9 w-9 items-center justify-center bg-brand-accent/15 text-brand-accent" style="clip-path: polygon(0 0, 100% 0, 85% 100%, 0 100%);"><Bolt class="h-5 w-5" /></span>
+              <h3 class="font-heading text-lg font-black uppercase tracking-[-0.01em] text-brand-text">{s.title}</h3>
+              {s.html ? <p class="mt-2 font-body text-sm leading-relaxed text-brand-muted" set:html={s.html}></p> : <p class="mt-2 font-body text-sm leading-relaxed text-brand-muted">{s.desc}</p>}
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    {page.propertyItems && page.propertyItems.length > 0 && (
+      <section class="relative bg-brand-bg py-20 sm:py-28">
+        <div class="mx-auto max-w-7xl px-5 sm:px-8">
+          <div class="reveal mb-4 max-w-2xl">
+            <p class="mb-4 flex items-center gap-3 font-body text-xs font-semibold uppercase tracking-[0.3em] text-brand-muted">
+              <span class="inline-block h-px w-10 bg-brand-accent"></span> Where we work
+            </p>
+            <h2 class="font-heading text-3xl font-black uppercase leading-[1.02] tracking-[-0.01em] text-brand-text sm:text-4xl">
+              <Fragment set:html={renderHeading(page.propertyHeading || '')} />
+            </h2>
+          </div>
+          <p class="reveal mb-12 max-w-2xl font-body text-lg leading-relaxed text-brand-muted">{page.propertyLeadIn}</p>
+          <div class="grid gap-5 sm:grid-cols-3">
+            {page.propertyItems.map((s, i) => (
+              <article class="reveal border border-white/8 bg-brand-surface p-6 transition-colors hover:border-brand-accent/50" style={`clip-path: polygon(0 0, 100% 0, 97% 100%, 0 100%); transition-delay:${i * 70}ms`}>
+                <span class="mb-4 inline-flex h-9 w-9 items-center justify-center bg-brand-accent/15 text-brand-accent" style="clip-path: polygon(0 0, 100% 0, 85% 100%, 0 100%);"><Bolt class="h-5 w-5" /></span>
+                <h3 class="font-heading text-lg font-black uppercase tracking-[-0.01em] text-brand-text">{s.title}</h3>
+                {s.html ? <p class="mt-2 font-body text-sm leading-relaxed text-brand-muted" set:html={s.html}></p> : <p class="mt-2 font-body text-sm leading-relaxed text-brand-muted">{s.desc}</p>}
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+    )}
+
+    <!-- SAFETY / COMPLIANCE -->
+    <section class="relative bg-brand-surface py-20 sm:py-28">
+      <div class="mx-auto max-w-4xl px-5 sm:px-8">
+        <div class="reveal mb-4">
+          <p class="mb-4 flex items-center gap-3 font-body text-xs font-semibold uppercase tracking-[0.3em] text-brand-muted">
+            <span class="inline-block h-px w-10 bg-brand-accent"></span> Safety and compliance
+          </p>
+          <h2 class="font-heading text-3xl font-black uppercase leading-[1.02] tracking-[-0.01em] text-brand-text sm:text-4xl">
+            <Fragment set:html={renderHeading(page.safetyHeading)} />
+          </h2>
+        </div>
+        <p class="reveal mb-8 font-body text-lg leading-relaxed text-brand-muted">{page.safetyLeadIn}</p>
+        <ul class="space-y-4">
+          {page.safetyBullets.map((b, i) => (
+            <li class="reveal flex items-start gap-3 border border-white/8 bg-brand-bg p-5" style={`clip-path: polygon(0 0, 100% 0, 99% 100%, 0 100%); transition-delay:${(i % 5) * 50}ms`}>
+              <span class="mt-0.5 grid h-7 w-7 shrink-0 place-items-center bg-brand-accent/15 text-brand-accent" style="clip-path: polygon(0 0, 100% 0, 80% 100%, 0 100%);"><Bolt class="h-4 w-4" /></span>
+              {b.html ? <span class="font-body text-base leading-relaxed text-brand-text" set:html={b.html}></span> : <span class="font-body text-base leading-relaxed text-brand-text">{b.text}</span>}
+            </li>
+          ))}
+        </ul>
+      </div>
+    </section>
+
+    <!-- WHY CHOOSE -->
+    <section class="relative bg-brand-bg py-20 sm:py-28">
+      <div class="mx-auto max-w-7xl px-5 sm:px-8">
+        <div class="reveal mb-4 max-w-2xl">
+          <p class="mb-4 flex items-center gap-3 font-body text-xs font-semibold uppercase tracking-[0.3em] text-brand-muted">
+            <span class="inline-block h-px w-10 bg-brand-accent"></span> Why choose us
+          </p>
+          <h2 class="font-heading text-3xl font-black uppercase leading-[1.02] tracking-[-0.01em] text-brand-text sm:text-4xl">
+            <Fragment set:html={renderHeading(page.chooseHeading)} />
+          </h2>
+        </div>
+        <p class="reveal mb-12 max-w-2xl font-body text-lg leading-relaxed text-brand-muted">{page.chooseLeadIn}</p>
+        <div class="grid gap-px overflow-hidden border border-white/5 bg-white/5 sm:grid-cols-2">
+          {page.chooseItems.map((p, i) => (
+            <div class="reveal group relative bg-brand-surface p-8 transition-colors hover:bg-brand-bg" style={`transition-delay: ${(i % 2) * 90}ms;`}>
+              <div class="mb-4 flex items-center justify-between">
+                <span class="font-heading text-3xl font-black tabular-nums text-brand-secondary/30 transition-colors group-hover:text-brand-accent">{String(i + 1).padStart(2, '0')}</span>
+                <span class="grid h-9 w-9 place-items-center text-brand-bg" style="clip-path: polygon(0 0, 100% 0, 100% 70%, 70% 100%, 0 100%); background: var(--color-brand-secondary);"><Bolt class="h-4 w-4" /></span>
+              </div>
+              <h3 class="font-heading text-lg font-bold uppercase leading-tight tracking-tight text-brand-text">{p.title}</h3>
+              {p.html ? <p class="mt-2 font-body text-base leading-relaxed text-brand-muted" set:html={p.html}></p> : <p class="mt-2 font-body text-base leading-relaxed text-brand-muted">{p.desc}</p>}
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <ServiceAreas />
+    <Testimonials />
+
+    <!-- CTA -->
+    <section class="relative overflow-hidden bg-brand-bg py-28">
+      <img src="/images/powerhub/home/cta.webp" alt="" aria-hidden="true" class="absolute inset-0 h-full w-full object-cover opacity-30" />
+      <div class="absolute inset-0" style="background: radial-gradient(circle at 30% 50%, rgba(255,106,0,0.32), transparent 55%), linear-gradient(to right, var(--color-brand-bg) 5%, rgba(23,24,27,0.7) 60%);"></div>
+      <div class="pointer-events-none absolute inset-0 opacity-[0.08]" style="background-image: linear-gradient(90deg, var(--color-brand-secondary) 1px, transparent 1px); background-size: 50px 50px;"></div>
+      <div class="relative mx-auto max-w-4xl px-5 text-center sm:px-8">
+        <p class="reveal mb-5 inline-flex items-center gap-2 border border-brand-accent/50 bg-brand-accent/10 px-4 py-1.5 font-heading text-xs font-bold uppercase tracking-widest text-brand-accent pulse-glow">
+          <Bolt class="h-3.5 w-3.5" /> {site.phoneDisplay}
+        </p>
+        <h2 class="reveal font-heading text-[clamp(2rem,5.5vw,3.4rem)] font-black uppercase leading-[1.0] tracking-[-0.01em] text-brand-text" style="transition-delay:80ms;">
+          <Fragment set:html={renderHeading(page.ctaHeading, true)} />
+        </h2>
+        <p class="reveal mx-auto mt-6 max-w-2xl font-body text-lg leading-relaxed text-brand-muted" style="transition-delay:160ms;">{page.ctaBody}</p>
+        <div class="reveal mt-9 flex flex-col items-center justify-center gap-4 sm:flex-row" style="transition-delay:240ms;">
+          <a href={site.phoneHref} class="sweep-btn group relative inline-flex items-center justify-center gap-2 overflow-hidden px-8 py-4 font-heading text-base font-bold text-brand-bg" style="clip-path: polygon(6% 0, 100% 0, 94% 100%, 0 100%); background: var(--color-brand-accent);">
+            <span class="relative z-10">Call {site.phoneDisplay}</span>
+            <Bolt class="relative z-10 h-4 w-4" />
+          </a>
+          <OutlineButton href="/contact-us" class="px-8 py-4 text-base">Get a Free Quote</OutlineButton>
+        </div>
+      </div>
+    </section>
+
+    <Faqs heading="Frequently asked questions" items={page.faqs} bg="bg-brand-surface" />
+  </main>
+  <Footer />
+</Layout>

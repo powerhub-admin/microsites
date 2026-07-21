@@ -1,0 +1,240 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Theme from '../components/Theme.astro';
+import NavInner from '../components/NavInner.astro';
+import Footer from '../components/Footer.astro';
+import PageHero from '../components/PageHero.astro';
+import Bolt from '../components/Bolt.astro';
+import { site } from '../data/site';
+import { services } from '../data/services';
+
+const areas = ['Revesby', 'Revesby Heights', 'Padstow', 'Panania', 'Milperra', 'Picnic Point', 'East Hills', 'Bankstown'];
+---
+<Theme />
+<style is:global>
+  .nsb-input {
+    width: 100%;
+    background: var(--color-brand-bg);
+    border: 1px solid rgba(255,255,255,0.1);
+    color: var(--color-brand-text);
+    font-family: var(--font-body);
+    font-size: 0.9375rem;
+    padding: 0.75rem 1rem;
+    outline: none;
+    transition: border-color 0.2s;
+    clip-path: polygon(0 0, 100% 0, 98% 100%, 0 100%);
+  }
+  .nsb-input:focus { border-color: var(--color-brand-secondary); }
+  .nsb-input::placeholder { color: var(--color-brand-muted); }
+  .nsb-label { display: block; font-family: var(--font-heading); font-size: 0.75rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--color-brand-muted); margin-bottom: 0.5rem; }
+</style>
+
+<Layout title="Contact Powerhub Electrical | Revesby Electrician" description="Call Powerhub Electrical on 0400 332 331 or send an enquiry. Same-day service and obligation-free quotes across Revesby and greater Sydney.">
+  <NavInner />
+  <main id="top">
+    <PageHero
+      eyebrow="Get in touch"
+      title="Get a straight"
+      accent="answer today"
+      sub="Fill in the form and we'll come back to you quickly, or call us now for emergency callouts and same-day bookings across Revesby."
+      crumbs={[{ label: 'Home', href: '/' }, { label: 'Contact Us' }]}
+      img="/images/powerhub/home/work-6.webp"
+    />
+
+    <!-- CONTACT -->
+    <section class="relative bg-brand-surface py-20 sm:py-28">
+      <div class="mx-auto grid max-w-7xl items-start gap-12 px-5 sm:px-8 lg:grid-cols-[1fr_1.1fr] lg:gap-16">
+
+        <div class="reveal space-y-8">
+          <div>
+            <p class="mb-4 flex items-center gap-3 font-body text-xs font-semibold uppercase tracking-[0.3em] text-brand-muted">
+              <span class="inline-block h-px w-10 bg-brand-accent"></span> Contact details
+            </p>
+            <h2 class="font-heading text-2xl font-black uppercase leading-[1.05] text-brand-text sm:text-3xl">
+              Reach us <span class="text-brand-secondary">directly</span>
+            </h2>
+          </div>
+
+          <div class="space-y-5">
+            <a href={site.phoneHref} class="flex items-center gap-4 border border-white/8 bg-brand-bg p-5 transition-colors hover:border-brand-accent/50" style="clip-path: polygon(0 0, 100% 0, 97% 100%, 0 100%);">
+              <span class="grid h-11 w-11 shrink-0 place-items-center bg-brand-accent/15 text-brand-accent" style="clip-path: polygon(0 0, 100% 0, 85% 100%, 0 100%);">
+                <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+              </span>
+              <div>
+                <p class="font-heading text-xs font-bold uppercase tracking-widest text-brand-muted">Phone</p>
+                <p class="font-heading text-lg font-black text-brand-secondary">{site.phoneDisplay}</p>
+              </div>
+            </a>
+
+            <a href={site.emailHref} class="flex items-center gap-4 border border-white/8 bg-brand-bg p-5 transition-colors hover:border-brand-accent/50" style="clip-path: polygon(0 0, 100% 0, 97% 100%, 0 100%);">
+              <span class="grid h-11 w-11 shrink-0 place-items-center bg-brand-accent/15 text-brand-accent" style="clip-path: polygon(0 0, 100% 0, 85% 100%, 0 100%);">
+                <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+              </span>
+              <div>
+                <p class="font-heading text-xs font-bold uppercase tracking-widest text-brand-muted">Email</p>
+                <p class="font-heading text-base font-black text-brand-secondary">{site.email}</p>
+              </div>
+            </a>
+
+            <div class="flex items-center gap-4 border border-white/8 bg-brand-bg p-5" style="clip-path: polygon(0 0, 100% 0, 97% 100%, 0 100%);">
+              <span class="grid h-11 w-11 shrink-0 place-items-center bg-brand-accent/15 text-brand-accent" style="clip-path: polygon(0 0, 100% 0, 85% 100%, 0 100%);">
+                <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="10" r="3"/><path d="M12 21.7C17.3 17 20 13 20 10a8 8 0 1 0-16 0c0 3 2.7 6.9 8 11.7z"/></svg>
+              </span>
+              <div>
+                <p class="font-heading text-xs font-bold uppercase tracking-widest text-brand-muted">Service area</p>
+                <p class="font-heading text-base font-black text-brand-text">Revesby &amp; greater Sydney</p>
+              </div>
+            </div>
+
+            <div class="flex items-center gap-4 border border-white/8 bg-brand-bg p-5" style="clip-path: polygon(0 0, 100% 0, 97% 100%, 0 100%);">
+              <span class="grid h-11 w-11 shrink-0 place-items-center bg-brand-accent/15 text-brand-accent" style="clip-path: polygon(0 0, 100% 0, 85% 100%, 0 100%);">
+                <Bolt class="h-5 w-5" />
+              </span>
+              <div>
+                <p class="font-heading text-xs font-bold uppercase tracking-widest text-brand-muted">Emergency callouts</p>
+                <p class="font-heading text-base font-black text-brand-secondary">Same-day response where possible</p>
+              </div>
+            </div>
+          </div>
+
+          <div>
+            <p class="mb-3 font-heading text-xs font-bold uppercase tracking-widest text-brand-muted">Areas we cover</p>
+            <div class="flex flex-wrap gap-2">
+              {areas.map((a) => (
+                <span class="border border-white/10 bg-brand-bg px-3 py-1.5 font-body text-sm text-brand-muted">{a}</span>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        <div class="reveal" style="transition-delay:120ms;">
+          <div class="border border-white/8 bg-brand-bg p-7 sm:p-10" style="clip-path: polygon(0 0, 100% 0, 98% 100%, 0 100%);">
+            <p class="mb-6 flex items-center gap-3 font-body text-xs font-semibold uppercase tracking-[0.3em] text-brand-muted">
+              <span class="inline-block h-px w-10 bg-brand-accent"></span> Free quote
+            </p>
+            <h2 class="mb-8 font-heading text-2xl font-black uppercase leading-[1.05] text-brand-text">
+              Tell us what you <span class="text-brand-secondary">need</span>
+            </h2>
+            <form id="contact-form" class="space-y-5" action="/api/contact" method="POST" novalidate>
+              <!-- honeypot: hidden from people, catches bots -->
+              <div aria-hidden="true" style="position:absolute;left:-9999px;height:0;overflow:hidden;">
+                <label>Company<input type="text" name="company" tabindex="-1" autocomplete="off" /></label>
+              </div>
+              <div class="grid gap-5 sm:grid-cols-2">
+                <div>
+                  <label class="nsb-label" for="name">Your name</label>
+                  <input id="name" type="text" name="name" autocomplete="name" placeholder="Jane Smith" class="nsb-input" required />
+                </div>
+                <div>
+                  <label class="nsb-label" for="phone">Phone number</label>
+                  <input id="phone" type="tel" name="phone" autocomplete="tel" placeholder="04XX XXX XXX" class="nsb-input" required />
+                </div>
+              </div>
+              <div>
+                <label class="nsb-label" for="email">Email address</label>
+                <input id="email" type="email" name="email" autocomplete="email" placeholder="jane@email.com" class="nsb-input" />
+              </div>
+              <div>
+                <label class="nsb-label" for="suburb">Your suburb</label>
+                <input id="suburb" type="text" name="suburb" placeholder="e.g. Revesby, Padstow, Panania" class="nsb-input" />
+              </div>
+              <div>
+                <label class="nsb-label" for="service">Service needed</label>
+                <select id="service" name="service" class="nsb-input" style="appearance: none;">
+                  <option value="">Select a service</option>
+                  {services.map((s) => <option>{s.navLabel}</option>)}
+                  <option>Other</option>
+                </select>
+              </div>
+              <div>
+                <label class="nsb-label" for="message">Tell us more</label>
+                <textarea id="message" name="message" rows="4" placeholder="Describe the job, any urgency, and the best time to reach you." class="nsb-input" style="resize: vertical;"></textarea>
+              </div>
+              <button id="contact-submit" type="submit" class="sweep-btn group relative inline-flex w-full items-center justify-center gap-2 overflow-hidden px-7 py-4 font-heading text-base font-bold text-brand-bg disabled:cursor-not-allowed disabled:opacity-60" style="clip-path: polygon(4% 0, 100% 0, 96% 100%, 0 100%); background: var(--color-brand-accent);">
+                <span class="relative z-10" data-label>Send Enquiry</span>
+                <Bolt class="relative z-10 h-4 w-4" />
+              </button>
+              <p id="contact-status" role="status" aria-live="polite" class="hidden font-body text-sm"></p>
+              <p class="font-body text-xs text-brand-muted">We respond quickly during business hours. For emergencies, call us directly on {site.phoneDisplay}.</p>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- AREA STRIP -->
+    <section class="relative overflow-hidden bg-brand-primary py-20 sm:py-28">
+      <div class="relative mx-auto grid max-w-7xl items-center gap-12 px-5 sm:px-8 lg:grid-cols-2 lg:gap-16">
+        <div class="reveal bg-brand-secondary/25 p-0.5 shadow-2xl shadow-black/50" style="clip-path: polygon(0 0, 100% 0, 100% 90%, 92% 100%, 0 100%);">
+          <div class="overflow-hidden" style="clip-path: polygon(0 0, 100% 0, 100% 90%, 92% 100%, 0 100%);">
+            <img src="/images/powerhub/home/work-1.webp" alt="Powerhub Electrical working across Revesby and greater Sydney" class="h-[24rem] w-full object-cover" loading="lazy" />
+          </div>
+        </div>
+        <div class="reveal" style="transition-delay:100ms;">
+          <p class="mb-4 flex items-center gap-3 font-body text-xs font-semibold uppercase tracking-[0.3em] text-brand-muted">
+            <span class="inline-block h-px w-10 bg-brand-accent"></span> Service area
+          </p>
+          <h2 class="font-heading text-3xl font-black uppercase leading-[1.02] tracking-[-0.01em] text-brand-text sm:text-4xl">
+            Local to <span class="text-brand-secondary">Revesby</span>
+          </h2>
+          <p class="mt-4 max-w-lg font-body text-base leading-relaxed text-brand-muted">
+            From Revesby across Canterbury-Bankstown and the wider greater Sydney, our licensed team is never far away, with fast response for urgent jobs.
+          </p>
+          <ul class="mt-7 grid gap-3 sm:grid-cols-2">
+            {areas.map((a) => (
+              <li class="flex items-center gap-3 border border-white/8 bg-brand-surface px-4 py-3 font-heading text-sm font-bold text-brand-text">
+                <Bolt class="h-4 w-4 text-brand-accent" /> {a}
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
+    </section>
+
+  </main>
+  <Footer />
+</Layout>
+
+<script>
+  const form = document.getElementById('contact-form') as HTMLFormElement | null;
+  const status = document.getElementById('contact-status');
+  const btn = document.getElementById('contact-submit') as HTMLButtonElement | null;
+  const label = btn?.querySelector('[data-label]');
+  if (form && status && btn && label) {
+    const setStatus = (msg: string, ok: boolean) => {
+      status.textContent = msg;
+      status.classList.remove('hidden');
+      status.style.color = ok ? 'var(--color-brand-secondary)' : '#ff6b6b';
+    };
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const data = Object.fromEntries(new FormData(form).entries());
+      btn.disabled = true;
+      const original = label.textContent;
+      label.textContent = 'Sending…';
+      status.classList.add('hidden');
+      try {
+        const res = await fetch('/api/contact', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(data),
+        });
+        const result = await res.json().catch(() => ({ ok: false }));
+        if (res.ok && result.ok) {
+          form.reset();
+          setStatus("Thanks — your enquiry is on its way. Redirecting…", true);
+          label.textContent = 'Enquiry sent';
+          window.location.assign('/thank-you');
+        } else {
+          setStatus(result.error || 'Something went wrong. Please call us on 0400 332 331.', false);
+          label.textContent = original;
+          btn.disabled = false;
+        }
+      } catch {
+        setStatus('Something went wrong. Please call us on 0400 332 331.', false);
+        label.textContent = original;
+        btn.disabled = false;
+      }
+    });
+  }
+</script>

@@ -1,0 +1,59 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Theme from '../components/Theme.astro';
+import NavInner from '../components/NavInner.astro';
+import Footer from '../components/Footer.astro';
+import Bolt from '../components/Bolt.astro';
+import OutlineButton from '../components/OutlineButton.astro';
+import { site } from '../data/site';
+import { services } from '../data/services';
+
+const popular = services.slice(0, 4);
+---
+<Theme />
+<Layout title="Thank You | Powerhub Electrical Revesby" description="Thanks for contacting Powerhub Electrical. We've received your enquiry and will be in touch shortly." noindex={true}>
+  <NavInner />
+  <main id="top">
+    <section class="relative flex min-h-[80svh] items-center overflow-hidden bg-brand-bg pt-32 pb-20 sm:pt-40">
+      <div class="pointer-events-none absolute inset-0 opacity-[0.06]" style="background-image: linear-gradient(var(--color-brand-secondary) 1px, transparent 1px), linear-gradient(90deg, var(--color-brand-secondary) 1px, transparent 1px); background-size: 48px 48px;"></div>
+      <div class="pointer-events-none absolute inset-0" style="background: radial-gradient(circle at 50% 30%, rgba(255,106,0,0.18), transparent 55%);"></div>
+
+      <div class="relative mx-auto max-w-3xl px-5 text-center sm:px-8">
+        <span class="reveal is-visible pulse-glow mx-auto mb-8 grid h-20 w-20 place-items-center text-brand-bg" style="clip-path: polygon(0 0, 100% 0, 100% 70%, 70% 100%, 0 100%); background: var(--color-brand-secondary);">
+          <svg class="h-9 w-9" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+        </span>
+        <p class="reveal is-visible mb-4 flex items-center justify-center gap-3 font-body text-xs font-semibold uppercase tracking-[0.3em] text-brand-muted">
+          <span class="inline-block h-px w-10 bg-brand-accent"></span> Enquiry received <span class="inline-block h-px w-10 bg-brand-accent"></span>
+        </p>
+        <h1 class="reveal is-visible font-heading text-4xl font-black uppercase leading-[1.0] tracking-[-0.02em] text-brand-text sm:text-5xl lg:text-6xl">
+          Thank <span class="text-brand-secondary">you</span>
+        </h1>
+        <p class="reveal is-visible mx-auto mt-6 max-w-xl font-body text-lg leading-relaxed text-brand-muted">
+          Thanks for getting in touch with Powerhub Electrical. Your enquiry has landed with us, and we'll be in touch shortly, usually within the hour during business hours.
+        </p>
+        <p class="reveal is-visible mx-auto mt-4 max-w-xl font-body text-base leading-relaxed text-brand-muted">
+          Need us sooner, or have a genuine electrical emergency? Call Brian and the team direct any time.
+        </p>
+
+        <div class="reveal is-visible mt-9 flex flex-col items-center justify-center gap-4 sm:flex-row">
+          <a href={site.phoneHref} class="sweep-btn group relative inline-flex items-center justify-center gap-2 overflow-hidden px-8 py-4 font-heading text-base font-bold text-brand-bg" style="clip-path: polygon(6% 0, 100% 0, 94% 100%, 0 100%); background: var(--color-brand-accent);">
+            <span class="relative z-10">Call {site.phoneDisplay}</span>
+            <Bolt class="relative z-10 h-4 w-4" />
+          </a>
+          <OutlineButton href={site.home} class="px-8 py-4 text-base">Back to home</OutlineButton>
+        </div>
+
+        <div class="reveal is-visible mt-14">
+          <p class="mb-4 font-heading text-xs font-bold uppercase tracking-widest text-brand-muted">While you're here</p>
+          <div class="flex flex-wrap items-center justify-center gap-2">
+            {popular.map((s) => (
+              <a href={`/services/${s.slug}`} class="border border-white/10 bg-brand-surface px-4 py-2 font-body text-sm text-brand-muted transition-colors hover:border-brand-accent/60 hover:text-brand-secondary">{s.navLabel}</a>
+            ))}
+            <a href="/services" class="border border-brand-secondary/30 bg-brand-surface px-4 py-2 font-heading text-xs font-bold uppercase tracking-widest text-brand-secondary transition-colors hover:text-brand-accent">All services →</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+  <Footer />
+</Layout>

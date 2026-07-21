@@ -1,0 +1,51 @@
+---
+interface FaqItem { q: string; a: string }
+interface Props { heading?: string; sub?: string; bg?: string; items?: FaqItem[] }
+const { heading, sub, bg = 'bg-brand-surface', items } = Astro.props;
+
+export const faqs: FaqItem[] = [
+  { q: 'How quickly can an electrician in Revesby attend my property?', a: 'Most electrician Revesby bookings are scheduled the same day, with emergency callouts prioritised first and a technician usually on site within hours of the initial call.' },
+  { q: 'Is a free quote available before booking electrical work in Revesby?', a: 'Yes, every enquiry receives an obligation-free quote before any technician is booked, so Revesby customers know the likely cost of switchboard, lighting or repair work upfront.' },
+  { q: 'What does the $50 discount for first-time Revesby customers cover?', a: 'The $50 discount applies to the first invoice for any new Revesby customer and is deducted directly from the total cost of labour and materials for that visit.' },
+  { q: 'Are pensioners eligible for a discount on electrical work in Revesby?', a: 'Pensioners receive 15% off the invoice total on any electrical job in Revesby, provided a valid concession card is shown at the time of booking or service.' },
+  { q: 'Is Level 2 electrical work available for Revesby properties?', a: 'Ausgrid-accredited Level 2 work, including service line repairs and meter relocations, is available for Revesby properties that need connection or metering work completed directly on the network.' },
+  { q: 'What happens if my switchboard needs upgrading during a callout?', a: 'If an old fuse box or overloaded switchboard is found during a visit, the electrician explains the risk and provides a fixed upgrade quote before any extra work begins.' },
+  { q: 'Does the free safety inspection apply to every booking in Revesby?', a: 'Every booked job in Revesby includes a complimentary 5-star electrical safety inspection, providing homeowners with a written summary of their switchboard, wiring, and safety switch condition at no extra charge.' },
+  { q: 'Are smoke alarms in older Revesby homes checked for compliance?', a: 'Smoke alarms are tested against current NSW requirements during each visit, with noncompliant or expired units identified and replaced to ensure the property meets legal safety standards immediately.' },
+  { q: 'Is Revesby within the regular service area for booked electrical work?', a: 'Revesby sits within the wider Sydney coverage area serviced from the Epping base, with jobs scheduled in advance to keep travel time and callout costs predictable for customers.' },
+  { q: 'What is included in the price quoted for electrical work?', a: 'Every fixed quote covers labour, standard materials and a compliance check, so Revesby customers see one upfront figure rather than a lower estimate followed by unexpected addon charges.' },
+];
+---
+<section class:list={["relative py-20 sm:py-28", bg]}>
+  <div class="mx-auto max-w-3xl px-5 sm:px-8">
+    {heading && (
+      <div class="reveal mb-12">
+        <p class="mb-4 flex items-center gap-3 font-body text-xs font-semibold uppercase tracking-[0.3em] text-brand-muted">
+          <span class="inline-block h-px w-10 bg-brand-accent"></span> FAQs
+        </p>
+        <h2 class="font-heading text-3xl font-black uppercase leading-[1.02] tracking-[-0.01em] text-brand-text sm:text-4xl">{heading}</h2>
+        {sub && <p class="mt-4 font-body text-lg leading-relaxed text-brand-muted">{sub}</p>}
+      </div>
+    )}
+    <div class="space-y-4">
+      {(items ?? faqs).map((f, i) => (
+        <details class="faq reveal group border border-white/8 bg-brand-bg" style={`clip-path: polygon(0 0, 100% 0, 99% 100%, 0 100%); transition-delay:${(i % 4) * 50}ms`}>
+          <summary class="flex cursor-pointer list-none items-center justify-between gap-4 p-5 font-heading text-base font-bold uppercase tracking-[-0.01em] text-brand-text transition-colors hover:text-brand-secondary sm:text-lg">
+            {f.q}
+            <span class="faq-icon grid h-7 w-7 shrink-0 place-items-center bg-brand-accent/15 text-brand-accent transition-transform duration-300" style="clip-path: polygon(0 0, 100% 0, 80% 100%, 0 100%);">
+              <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+            </span>
+          </summary>
+          <div class="border-t border-white/8 px-5 py-5">
+            <p class="font-body text-base leading-relaxed text-brand-muted">{f.a}</p>
+          </div>
+        </details>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .faq[open] .faq-icon { transform: rotate(45deg); }
+  .faq summary::-webkit-details-marker { display: none; }
+</style>
