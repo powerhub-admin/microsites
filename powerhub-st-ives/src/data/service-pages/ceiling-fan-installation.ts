@@ -10,7 +10,7 @@ const page: ServicePageData = {
   h1: 'Ceiling Fan Installation St Ives',
   supporting: 'Quality ceiling fan installation across St Ives, keeping every fan steady, quiet, and properly supported. Backed by 100+ five-star reviews.',
   badges: ['100+ five-star reviews', 'Fixed quotes', 'Licensed #467291C'],
-  heroImg: '/images/powerhub/services/ceiling-fan-installation.webp',
+  heroImg: '/images/powerhub/services/ceiling-fan-install.webp',
   navLabel: 'Ceiling Fan Installation',
 
   introHeading: 'Wobbly, Noisy, or No Fan at All?',

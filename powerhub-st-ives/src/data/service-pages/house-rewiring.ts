@@ -39,7 +39,7 @@ const page: ServicePageData = {
 
   processHeading: 'Our House Rewiring Process for St Ives Homes',
   processLeadIn: 'Booking house rewiring across St Ives generally follows this staged sequence:',
-  processImg: '/images/powerhub/services/house-rewiring-2.webp',
+  processImg: '/images/powerhub/home/why-choose.webp',
   processSteps: [
     { n: '01', title: 'Assessment and scope', desc: 'Our electrician inspects existing wiring throughout the property to confirm exactly what needs replacing and what can safely remain untouched.' },
     { n: '02', title: 'Obligation-free quote', desc: 'We provide a detailed, obligation-free quote covering the full scope of work before any cabling is disturbed inside the property.' },

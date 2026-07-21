@@ -10,7 +10,7 @@ const page: ServicePageData = {
   h1: 'Lighting Installation St Ives',
   supporting: 'Quality lighting installation across St Ives that gets the wiring and fittings right the first time. Backed by $50 off your first service.',
   badges: ['$50 off first service', 'Fixed quotes', 'Licensed #467291C'],
-  heroImg: '/images/powerhub/services/lighting-installation.webp',
+  heroImg: '/images/powerhub/services/light-install.webp',
   navLabel: 'Lighting Installation',
 
   introHeading: 'Ready to Brighten Up Your Home?',

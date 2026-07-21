@@ -1,5 +1,6 @@
 ---
 import { services } from '../data/services';
+import { servicePages } from '../data/servicePages';
 
 // The homepage copy uses the source document's exact H3 headings, which differ
 // from the nav labels for two items.
@@ -7,6 +8,11 @@ const headingOverride: Record<string, string> = {
   'emergency-electricians': 'Emergency Electrician',
   'house-rewiring': 'Home Rewiring',
 };
+
+// Each card shows the same featured image as its individual service page
+// (the long-form page's heroImg), falling back to the catalogue image so the
+// grid never duplicates an image that a page has since replaced.
+const cardImg = (slug: string, fallback: string) => servicePages[slug]?.heroImg ?? fallback;
 ---
 <section id="services" class="relative bg-brand-bg py-24">
   <div class="pointer-events-none absolute inset-0 opacity-[0.05]" style="background-image: linear-gradient(90deg, var(--color-brand-secondary) 1px, transparent 1px); background-size: 60px 60px;"></div>
@@ -28,8 +34,8 @@ const headingOverride: Record<string, string> = {
       {services.map((s, i) => (
         <a href={`/services/${s.slug}`} class="svc reveal group relative flex flex-col overflow-hidden border border-white/5 bg-brand-surface transition-colors hover:border-brand-accent/50" style={`transition-delay: ${(i % 3) * 70}ms; clip-path: polygon(0 0, 100% 0, 100% 94%, 96% 100%, 0 100%);`}>
           <span class="svc-top absolute inset-x-0 top-0 z-20 h-1 origin-left scale-x-0 bg-brand-accent transition-transform duration-300"></span>
-          <div class="relative h-40 overflow-hidden">
-            <img src={s.img} alt={s.alt} class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105" loading="lazy" />
+          <div class="relative h-56 overflow-hidden">
+            <img src={cardImg(s.slug, s.img)} alt={s.alt} class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105" loading="lazy" />
             <div class="absolute inset-0 bg-gradient-to-t from-brand-surface via-brand-surface/20 to-transparent"></div>
           </div>
           <div class="flex flex-1 flex-col p-6">

@@ -10,7 +10,7 @@ const page: ServicePageData = {
   h1: 'Safety Switch Installation St Ives',
   supporting: 'Reliable safety switch installation across St Ives that protects every circuit, not just some of them. Backed by same-day testing and a fully licensed electrician with 25 years experience.',
   badges: ['Same-day testing', 'Fixed quotes', 'Licensed #467291C'],
-  heroImg: '/images/powerhub/services/safety-switch-installation.webp',
+  heroImg: '/images/powerhub/services/safety-switch-rcd.webp',
   navLabel: 'Safety Switch Installation',
 
   introHeading: 'Does Every Circuit in Your Home Have Real Protection?',

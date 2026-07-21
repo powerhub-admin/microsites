@@ -39,7 +39,7 @@ const page: ServicePageData = {
 
   processHeading: 'Our Power Point Installation Process for St Ives Homes',
   processLeadIn: 'Booking power point installation across St Ives with Powerhub Electrical generally follows this straightforward sequence:',
-  processImg: '/images/powerhub/services/power-point-installation-2.webp',
+  processImg: '/images/powerhub/home/why-choose.webp',
   processSteps: [
     { n: '01', title: 'Discuss locations and needs', desc: 'You show us where extra power points would genuinely help, whether that is one outlet or several throughout the home.' },
     { n: '02', title: 'Fixed quote', desc: 'We provide a clear, fixed quote for each power point, based on wiring access and the remaining circuit capacity.' },

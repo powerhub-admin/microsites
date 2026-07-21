@@ -39,7 +39,7 @@ const page: ServicePageData = {
 
   processHeading: 'Our Electrical Repair Process for St Ives Homes',
   processLeadIn: 'Booking electrical repairs across St Ives with Powerhub Electrical generally follows this straightforward sequence:',
-  processImg: '/images/powerhub/home/work-3.webp',
+  processImg: '/images/powerhub/home/why-choose.webp',
   processSteps: [
     { n: '01', title: 'Call or enquire online', desc: 'You call 0400 332 331 or send an enquiry, and we ask a few quick questions about the exact issue.' },
     { n: '02', title: 'Obligation-free quote', desc: 'We provide a clear, honest quote for the repair before any work begins, with absolutely no pressure.' },

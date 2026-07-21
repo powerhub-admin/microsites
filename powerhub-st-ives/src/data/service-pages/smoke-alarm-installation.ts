@@ -10,8 +10,8 @@ const page: ServicePageData = {
   h1: 'Smoke Alarm Installation St Ives',
   supporting: 'Compliant smoke alarm installation across St Ives using photoelectric alarms that meet current NSW law. Backed by $50 off your first service.',
   badges: ['$50 off first service', 'Free safety inspection', 'Licensed #467291C'],
-  heroImg: '/images/powerhub/services/smoke-alarm-installation.webp',
-  processImg: '/images/powerhub/services/smoke-alarm-installation-2.webp',
+  heroImg: '/images/powerhub/services/smoke-alarm-01.webp',
+  processImg: '/images/powerhub/home/why-choose.webp',
   navLabel: 'Smoke Alarm Installation',
 
   introHeading: 'Are Your Smoke Alarms Actually Compliant?',

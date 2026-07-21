@@ -39,7 +39,7 @@ const page: ServicePageData = {
 
   processHeading: 'Our Switchboard Upgrade Process for St Ives Homes',
   processLeadIn: 'Booking a switchboard upgrade across St Ives with Powerhub Electrical generally follows this straightforward sequence:',
-  processImg: '/images/powerhub/services/switchboard-upgrade-2.webp',
+  processImg: '/images/powerhub/home/why-choose.webp',
   processSteps: [
     { n: '01', title: 'Board assessment', desc: 'Our electrician inspects your existing switchboard, checking its age, capacity, and whether safety switches are properly fitted throughout the home.' },
     { n: '02', title: 'Fixed quote', desc: 'You receive a clear, fixed quote covering the new board, safety switches, and any additional work identified during the assessment.' },

@@ -10,7 +10,7 @@ const page: ServicePageData = {
   h1: 'Appliance Installation St Ives',
   supporting: 'Careful appliance installation across St Ives, ensuring the circuit and isolation switch are correct. Backed by a 15% pensioner discount and a fully licensed electrician.',
   badges: ['$50 off first service', 'Free safety inspection', 'Licensed #467291C'],
-  heroImg: '/images/powerhub/services/appliance-installation.webp',
+  heroImg: '/images/powerhub/services/appliance-install.webp',
   navLabel: 'Appliance Installation',
 
   introHeading: 'New Appliance Waiting to Be Connected?',
