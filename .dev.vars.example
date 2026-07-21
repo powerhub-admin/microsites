@@ -1,0 +1,14 @@
+# Copy this file to `.dev.vars` (for local `astro dev`) and set real values.
+# For production, add these as Cloudflare Pages secrets/vars instead — never commit real keys.
+
+# Resend API key (create at https://resend.com → API Keys). Required for the contact form.
+RESEND_API_KEY=re_xxxxxxxxxxxxxxxxxxxxxxxx
+
+# Where enquiries are emailed (defaults to mark@plumbelecmarketing.com if unset).
+CONTACT_TO=mark@plumbelecmarketing.com
+
+# The "from" address. Must be a Resend-verified domain.
+# Leave as the shared testing sender until a domain is verified in Resend:
+RESEND_FROM=Powerhub Electrical Website <onboarding@resend.dev>
+# After verifying a domain in Resend, switch to e.g.:
+# RESEND_FROM=Powerhub Electrical <noreply@powerhubelectrical.com.au>

@@ -1,0 +1,31 @@
+---
+const suburbs = ['St Ives','St Ives Chase','Pymble','West Pymble','Gordon','Killara','East Killara','Lindfield','East Lindfield','Roseville','Roseville Chase','Turramurra','South Turramurra','North Turramurra','Warrawee','Wahroonga','Waitara','Hornsby','Normanhurst','Thornleigh','Terrey Hills','Belrose','Davidson','Frenchs Forest','Forestville','Chatswood'];
+---
+<section id="areas" class="relative overflow-hidden bg-brand-surface py-24">
+  <div class="mx-auto grid max-w-7xl items-start gap-12 px-5 sm:px-8 lg:grid-cols-[0.9fr_1.1fr] lg:gap-16 lg:px-8">
+    <div class="reveal relative">
+      <div class="overflow-hidden border-2 border-brand-secondary/25 shadow-2xl shadow-black/50" style="clip-path: polygon(0 0, 100% 0, 100% 90%, 92% 100%, 0 100%);">
+        <img src="/images/powerhub/home/work-5.webp" alt="Powerhub Electrical working across St Ives and the Upper North Shore" class="h-full w-full object-cover" />
+      </div>
+      <span class="absolute -bottom-4 left-6 h-20 w-1.5 bg-brand-accent"></span>
+    </div>
+
+    <div>
+      <div class="reveal mb-8 max-w-xl" style="transition-delay: 100ms;">
+        <p class="mb-4 flex items-center gap-3 font-body text-xs font-semibold uppercase tracking-[0.3em] text-brand-muted">
+          <span class="inline-block h-px w-10 bg-brand-accent"></span>
+          Areas we service
+        </p>
+        <h2 class="font-heading text-[clamp(1.9rem,4.5vw,3rem)] font-black uppercase leading-[1.02] tracking-[-0.01em] text-brand-text">
+          St Ives &amp; the <span class="text-brand-secondary">Upper North Shore</span>
+        </h2>
+        <p class="mt-4 font-body text-base leading-relaxed text-brand-muted">From St Ives across Ku-ring-gai and the wider Upper North Shore, we're never far away. Don't see your suburb? Give us a call, chances are we're already nearby.</p>
+      </div>
+      <ul class="reveal flex flex-wrap gap-2" style="transition-delay: 180ms;">
+        {suburbs.map((s) => (
+          <li class="border border-white/8 bg-brand-bg px-3 py-1.5 font-body text-sm text-brand-text transition-colors hover:border-brand-accent/60 hover:text-brand-secondary">{s}</li>
+        ))}
+      </ul>
+    </div>
+  </div>
+</section>

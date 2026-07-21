@@ -1,0 +1,31 @@
+---
+import Bolt from './Bolt.astro';
+import OutlineButton from './OutlineButton.astro';
+import { site } from '../data/site';
+---
+<section id="contact" class="relative overflow-hidden bg-brand-bg py-28">
+  <img src="/images/powerhub/home/cta.webp" alt="" aria-hidden="true" class="absolute inset-0 h-full w-full object-cover opacity-30" />
+  <div class="absolute inset-0" style="background: radial-gradient(circle at 30% 50%, rgba(255,106,0,0.32), transparent 55%), linear-gradient(to right, var(--color-brand-bg) 5%, rgba(23,24,27,0.7) 60%);"></div>
+  <div class="pointer-events-none absolute inset-0 opacity-[0.08]" style="background-image: linear-gradient(90deg, var(--color-brand-secondary) 1px, transparent 1px); background-size: 50px 50px;"></div>
+
+  <div class="relative mx-auto max-w-4xl px-5 text-center sm:px-8">
+    <p class="reveal mb-5 inline-flex items-center gap-2 border border-brand-accent/50 bg-brand-accent/10 px-4 py-1.5 font-heading text-xs font-bold uppercase tracking-widest text-brand-accent pulse-glow">
+      <Bolt class="h-3.5 w-3.5" /> 24/7 emergency callouts
+    </p>
+    <h2 class="reveal font-heading text-[clamp(2rem,5.5vw,3.6rem)] font-black uppercase leading-[0.98] tracking-[-0.01em] text-brand-text" style="transition-delay: 80ms;">
+      Power problem in St Ives? <span class="text-brand-accent">Get a straight answer today</span>
+    </h2>
+    <p class="reveal mx-auto mt-6 max-w-2xl font-body text-lg leading-relaxed text-brand-muted" style="transition-delay: 160ms;">
+      Whether it's a tripped switchboard, an outdated smoke alarm, or you simply need a trustworthy electrician in St Ives, call Brian and the team directly on {site.phoneDisplay}. New customers save $50 on their first service, pensioners receive 15% off, and every booking includes a free five-star safety inspection, with same-day appointments available.
+    </p>
+    <div class="reveal mt-9 flex flex-col items-center justify-center gap-4 sm:flex-row" style="transition-delay: 240ms;">
+      <a href={site.phoneHref} class="sweep-btn group relative inline-flex items-center justify-center gap-2 overflow-hidden px-8 py-4 font-heading text-base font-bold text-brand-bg" style="clip-path: polygon(6% 0, 100% 0, 94% 100%, 0 100%); background: var(--color-brand-accent);">
+        <span class="relative z-10">Call {site.phoneDisplay}</span>
+        <Bolt class="relative z-10 h-4 w-4" />
+      </a>
+      <OutlineButton href="/contact-us" class="px-8 py-4 text-base">
+        Get a Free Quote
+      </OutlineButton>
+    </div>
+  </div>
+</section>

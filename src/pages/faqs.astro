@@ -1,0 +1,80 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Theme from '../components/Theme.astro';
+import NavInner from '../components/NavInner.astro';
+import Footer from '../components/Footer.astro';
+import PageHero from '../components/PageHero.astro';
+import Faqs from '../components/Faqs.astro';
+import OutlineButton from '../components/OutlineButton.astro';
+import Bolt from '../components/Bolt.astro';
+import { site } from '../data/site';
+
+const faqItems = [
+  { q: "Is Powerhub Electrical licensed and insured?", a: "Yes, Powerhub Electrical holds Electrical Contractor Licence 467291C, verifiable through the NSW licence register, and our ABN is publicly searchable as well." },
+  { q: "How many years of experience does your team have?", a: "Between Brian and the team, Powerhub Electrical brings more than 25 years of combined experience in the electrical trade to every job across St Ives." },
+  { q: "Do you offer emergency electrician services?", a: "Yes, we provide 24/7 emergency callouts across St Ives, so a licensed electrician can respond quickly whenever a dangerous fault or power issue arises unexpectedly." },
+  { q: "Do you offer same-day service?", a: "Yes, we prioritise same-day appointments across St Ives whenever the schedule allows, particularly for jobs that genuinely cannot wait until the next day." },
+  { q: "Do you provide free quotes?", a: "Every job starts with a clear, obligation-free quote, so you know the cost upfront before agreeing to any work, no matter the job." },
+  { q: "Do you offer any discounts?", a: "Yes, pensioners across St Ives receive an automatic 15 per cent discount on every job, applied at the quoting stage without any paperwork required beforehand." },
+  { q: "Is there an offer for new customers?", a: "Yes, new customers across St Ives save $50 on their first booking with Powerhub Electrical, with no fine print attached to this offer." },
+  { q: "What suburbs does Powerhub Electrical service?", a: "We service St Ives and the surrounding Ku-ring-gai and Upper North Shore suburbs, with same-day appointments available wherever the schedule genuinely allows it." },
+  { q: "Do you handle general electrical repairs?", a: "Yes, we handle everyday electrical repairs across St Ives, from faulty power points and flickering lights to dead circuits and general wear and tear." },
+  { q: "Can you help if I have a fault I can't explain?", a: "Yes, our electricians specialise in tracing intermittent and hard-to-find faults, identifying the actual cause rather than resorting to quick, temporary fixes." },
+  { q: "Do you upgrade old switchboards?", a: "Yes, we replace outdated ceramic fuse boards with modern, compliant switchboards, adding proper safety switch protection across every circuit throughout the home." },
+  { q: "Do you install and test safety switches?", a: "Yes, we install safety switches in homes that have none and test existing ones to confirm they trip within the correct time frame, in line with NSW Government advice on RCD protection." },
+  { q: "Do you install downlights and other lighting?", a: "Yes, we install LED downlights, pendant lighting and outdoor lighting, including upgrading old halogen downlights to safer, more energy-efficient LED fittings." },
+  { q: "Do you install ceiling fans?", a: "Yes, we install ceiling fans onto properly rated support brackets, including upgrading lightonly fittings and correcting wobbling or noisy existing fans." },
+  { q: "Do you install exhaust fans?", a: "Yes, we install bathroom, kitchen and laundry exhaust fans with correct ducting to the outside, rather than leaving them venting into the roof space." },
+  { q: "Can you add extra power points to my home?", a: "Yes, we add power points wherever you genuinely need them, properly wired into the circuit rather than relying on double adapters or power boards." },
+  { q: "Do you offer house rewiring?", a: "Yes, we completely rewire established homes with ageing or unsafe cabling, replacing it with modern, compliant wiring built for how homes actually run today." },
+  { q: "Do you handle 3 phase power upgrades?", a: "Yes, we manage 3-phase power upgrades from the internal switchboard work through to coordinating the network connection application with the distributor." },
+  { q: "Are you accredited for Level 2 electrical work?", a: "Yes, our Level 2 electricians handle work between your property and the network, including service line repairs, meter relocations and new connections." },
+  { q: "Do you install kitchen appliances?", a: "Yes, we connect ovens, cooktops, rangehoods, and dishwashers to properly sized, dedicated circuits, including any isolation switches the appliance is legally required to have." },
+  { q: "Do you install smoke alarms?", a: "Yes, we install compliant, interconnected photoelectric smoke alarms across St Ives, meeting current NSW requirements for both owner-occupied and rental properties." },
+  { q: "Do you work on rental properties?", a: "Yes, we work with landlords and property managers across St Ives, including safety switch testing and smoke alarm compliance ahead of a new tenancy." },
+  { q: "What happens during the free safety inspection?", a: "Every booking includes a complimentary five-star electrical safety inspection, giving you a genuine second opinion on your switchboard, wiring and safety switches." },
+  { q: "Do you provide a fixed price quote before starting work?", a: "Yes, every job includes a clear, fixed quote covering the full scope of work, so there are no surprises once the final invoice arrives." },
+  { q: "How can I book a job with Powerhub Electrical?", a: "Simply call 0400 332 331 to discuss your job, and we'll arrange a quote and, where possible, a same-day appointment across St Ives." },
+];
+---
+<Theme />
+<Layout title="Electrician St Ives FAQs | Powerhub Electrical" description="Honest answers about pricing, licensing, and what to expect from Powerhub Electrical. Your St Ives electrician FAQs on quotes, discounts, emergencies and more.">
+  <NavInner />
+  <main id="top">
+    <PageHero
+      eyebrow="FAQs"
+      title="Frequently asked questions about our electrician services in"
+      accent="St Ives"
+      sub="Honest answers about pricing, licensing, and what to expect from Powerhub Electrical."
+      crumbs={[{ label: 'Home', href: '/' }, { label: 'FAQs' }]}
+    >
+      <p>This page brings together the St Ives electrician FAQs we hear most often at Powerhub Electrical, covering pricing, licensing, service areas, and what happens during a typical job. If your question isn't listed here, call us directly, and we'll answer it honestly.</p>
+    </PageHero>
+
+    <Faqs items={faqItems} bg="bg-brand-surface" />
+
+    <!-- STILL HAVE A QUESTION -->
+    <section class="relative overflow-hidden bg-brand-bg py-24">
+      <div class="pointer-events-none absolute inset-0 opacity-[0.06]" style="background-image: linear-gradient(90deg, var(--color-brand-secondary) 1px, transparent 1px); background-size: 50px 50px;"></div>
+      <div class="relative mx-auto max-w-4xl px-5 text-center sm:px-8">
+        <p class="reveal mb-5 inline-flex items-center gap-2 border border-brand-accent/50 bg-brand-accent/10 px-4 py-1.5 font-heading text-xs font-bold uppercase tracking-widest text-brand-accent pulse-glow">
+          <Bolt class="h-3.5 w-3.5" /> We're here to help
+        </p>
+        <h2 class="reveal font-heading text-[clamp(2rem,5.5vw,3.4rem)] font-black uppercase leading-[1.0] tracking-[-0.01em] text-brand-text" style="transition-delay:80ms;">
+          Still have a <span class="text-brand-accent">question?</span>
+        </h2>
+        <p class="reveal mx-auto mt-6 max-w-2xl font-body text-lg leading-relaxed text-brand-muted" style="transition-delay:160ms;">
+          If you couldn't find the answer you needed among these St Ives electrician FAQs, call Powerhub Electrical directly on {site.phoneDisplay}. We're happy to talk through your specific situation, provide an honest, obligation-free quote, and explain exactly what your job involves before you commit to anything.
+        </p>
+        <div class="reveal mt-9 flex flex-col items-center justify-center gap-4 sm:flex-row" style="transition-delay:240ms;">
+          <a href={site.phoneHref} class="sweep-btn group relative inline-flex items-center justify-center gap-2 overflow-hidden px-8 py-4 font-heading text-base font-bold text-brand-bg" style="clip-path: polygon(6% 0, 100% 0, 94% 100%, 0 100%); background: var(--color-brand-accent);">
+            <span class="relative z-10">Call {site.phoneDisplay}</span>
+            <Bolt class="relative z-10 h-4 w-4" />
+          </a>
+          <OutlineButton href="/contact-us" class="px-8 py-4 text-base">Get a Free Quote</OutlineButton>
+        </div>
+      </div>
+    </section>
+  </main>
+  <Footer />
+</Layout>

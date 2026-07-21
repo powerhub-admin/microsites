@@ -1,0 +1,336 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Theme from '../../components/Theme.astro';
+import NavInner from '../../components/NavInner.astro';
+import Footer from '../../components/Footer.astro';
+import PageHero from '../../components/PageHero.astro';
+import Faqs from '../../components/Faqs.astro';
+import ServiceAreas from '../../components/ServiceAreas.astro';
+import Testimonials from '../../components/Testimonials.astro';
+import OutlineButton from '../../components/OutlineButton.astro';
+import Bolt from '../../components/Bolt.astro';
+import { site } from '../../data/site';
+
+const linkClass = 'font-semibold text-brand-secondary underline decoration-brand-accent/50 underline-offset-4 hover:text-brand-accent';
+
+const situations = [
+  { title: 'Complete power outages', html: `When an entire St Ives property loses power while neighbouring homes stay lit, the fault usually sits inside your own switchboard or wiring rather than the wider <a href="https://www.ausgrid.com.au/outages-and-issues" target="_blank" rel="noopener noreferrer" class="${linkClass}">street network</a> itself.` },
+  { title: "Tripped safety switches that won't reset", html: `<a href="https://www.safework.nsw.gov.au/hazards-a-z/electrical-and-power/residual-current-devices" target="_blank" rel="noopener noreferrer" class="${linkClass}">Safety switches</a> are designed to cut power the moment they detect a fault, and if one refuses to reset, our electricians quickly trace the exact circuit responsible for the problem.` },
+  { title: 'Burning smells or sparking outlets', desc: 'A burning smell near a power point or visible sparking should never wait until the morning, so our electricians treat this as a same-day priority callout every time it happens.' },
+  { title: 'Storm and weather-related faults', desc: 'Severe storms across the Upper North Shore can damage service lines or force debris onto powerlines, and downed lines should always be treated as live until they are professionally cleared.' },
+  { title: 'Switchboard failures', desc: 'Older switchboards across established St Ives homes sometimes fail completely under load, and our electricians assess whether a repair is enough or a full upgrade makes far more practical sense.' },
+  { title: 'Exposed or damaged wiring', desc: 'Chewed, frayed or exposed wiring found in ceiling spaces or subfloors is treated as an urgent safety risk, and our electricians isolate the circuit before starting any actual repair work.' },
+];
+
+const whyMatters = [
+  { title: 'Reducing fire risk', desc: 'Electrical faults are one of the most common causes of house fires across NSW, and an unresolved fault left overnight only increases that risk while everyone sleeps unaware of it.' },
+  { title: 'Protecting appliances and devices', desc: 'Power surges and unstable voltage during a fault can silently damage televisions, fridges and home theatre systems, so isolating the problem early often saves an expensive full replacement bill later.' },
+  { title: 'Avoiding a bigger repair bill', desc: 'A minor fault left unresolved tends to spread, turning a simple switch replacement into a full switchboard upgrade once components downstream begin failing under that same constant, ongoing electrical strain.' },
+  { title: 'Keeping your family safe', desc: 'Children and pets are often unaware of electrical danger, so a fast response to sparking outlets, exposed wiring or persistent tripping removes that risk before anyone gets hurt at all.' },
+];
+
+const process = [
+  { n: '01', title: 'Call and phone triage', desc: 'You call 0400 332 331, describe the fault, and we assess how urgent it is before dispatching an electrician immediately.' },
+  { n: '02', title: 'Fast dispatch to your property', desc: 'For genuine emergencies, we prioritise same-day dispatch to your St Ives address rather than booking you into a distant slot.' },
+  { n: '03', title: 'On-site diagnosis', desc: 'Our electrician isolates the fault safely, identifies the real cause, and explains what happened before actually starting any repair work.' },
+  { n: '04', title: 'Safe repair and restoration', desc: 'Once the cause is confirmed, we complete the repair and restore power safely, checking nearby circuits before we finally leave.' },
+  { n: '05', title: 'Follow-up if needed', desc: 'If the fault was part of a larger issue, we explain your options clearly and follow up without any pressure.' },
+];
+
+const common = [
+  { title: 'Ageing wiring in character homes', desc: "Many established St Ives properties built decades ago near Garigal National Park still carry their original wiring, which was never designed for today's appliance and device demands in most homes." },
+  { title: 'Nuisance tripping from overloaded circuits', desc: 'Home offices, entertainment systems and kitchen appliances often get added to a single circuit over the years, and eventually that circuit trips repeatedly under the combined electrical load it carries.' },
+  { title: 'Storm damage to overhead connections', desc: 'Strong winds through the leafy streets around St Ives can bring branches down onto overhead service lines, and that is when our Level 2 electricians step in quickly and safely.' },
+  { title: 'Power surges during storm season', desc: 'Voltage spikes during electrical storms can damage switchboards and connected appliances at the same time, so a post-storm inspection often catches hidden problems before they cause another costly callout later.' },
+];
+
+const properties = [
+  { title: 'Established family homes', desc: 'Long-standing family homes across St Ives often combine original wiring with decades of small additions, and an emergency callout here usually means tracing a fault through several generations of work.' },
+  { title: 'Larger executive properties', desc: 'Bigger St Ives homes with pools, home theatres and multiple outbuildings draw far more load than a standard house, so an emergency fault can affect several different areas at once.' },
+  { title: 'Renovating or recently extended homes', desc: 'Properties mid-renovation across St Ives sometimes run temporary power arrangements that were never meant to last, and a fault here often needs a proper, permanent fix rather than another patch.' },
+];
+
+const safety = [
+  { html: 'If you smell burning or see visible sparking, switch off power at the main switch if it is safe to reach, and call us immediately' },
+  { html: `During storms, treat any <a href="https://www.ses.nsw.gov.au/plan-and-prepare/electricity-gas-and-water-safety" target="_blank" rel="noopener noreferrer" class="${linkClass}">fallen or low-hanging power line</a> as live and stay at least 8 metres away until it has been made safe` },
+  { html: 'If the outage affects your whole street rather than just your property, it is likely a network fault best reported to your electricity distributor rather than an electrician' },
+  { html: `Powerhub Electrical holds Electrical Contractor Licence #467291C, verifiable through the <a href="https://verify.licence.nsw.gov.au/details/Contractor%20Licence/1-46C84T5" target="_blank" rel="noopener noreferrer" class="${linkClass}">NSW Government licence register</a>` },
+  { html: `<a href="https://abr.business.gov.au/ABN/View?id=91677354602" target="_blank" rel="noopener noreferrer" class="${linkClass}">ABN 91 677 354 602</a>, searchable through the Australian Business Register` },
+];
+
+const whyChoose = [
+  { n: '01', title: '24/7 emergency availability', desc: 'Powerhub Electrical operates around the clock, so a genuine electrical emergency in St Ives gets an answer regardless of whether it happens at midday or the middle of the night.' },
+  { n: '02', title: 'Same-day response where possible', desc: 'Genuine emergencies get priority scheduling, and wherever the day allows for it, we aim to have someone at your St Ives property the same day the problem is first reported.' },
+  { n: '03', title: '25+ years of combined trade experience', desc: 'Between Brian and the team, Powerhub Electrical brings more than twenty-five combined years of electrical trade experience to every emergency callout across St Ives and the wider local Ku-ring-gai area.' },
+  { n: '04', title: 'Free 5-star safety inspection', desc: 'Every emergency callout with Powerhub Electrical includes a complimentary five-star electrical safety inspection, so you also find out whether anything else nearby needs attention before it becomes truly urgent too.' },
+];
+
+const emergencyFaqs = [
+  { q: 'Do you offer 24/7 emergency electrician services in St Ives?', a: 'Yes, Powerhub Electrical provides 24/7 emergency callouts across St Ives, so a licensed electrician can respond whenever a dangerous fault, outage or sparking issue puts your home at risk.' },
+  { q: 'How quickly can an electrician reach my St Ives property?', a: 'We prioritise same-day dispatch for genuine emergencies across St Ives, aiming to have an electrician at your property as quickly as our schedule safely allows.' },
+  { q: 'Is it a network fault or a problem inside my home?', a: 'If your whole street has lost power, it is usually a network issue best reported to your electricity distributor, but a fault limited to your property is ours to fix.' },
+  { q: 'Do you charge extra for after-hours or weekend callouts?', a: 'We keep our pricing transparent and explain any callout cost upfront before starting work, so there are no hidden surprises once the job is finished.' },
+  { q: 'What should I do if I see a fallen power line?', a: 'Stay at least eight metres away, assume it is live even if it looks harmless, and call emergency services or your electricity distributor immediately for help.' },
+  { q: "Will you check other circuits while you're fixing the fault?", a: 'Yes, every emergency callout includes a complimentary five-star safety inspection, so we can flag anything else nearby that might cause a bigger problem for you later on.' },
+];
+---
+<Theme />
+<Layout title="Emergency Electrician St Ives | Powerhub Electrical" description="Need an emergency electrician in St Ives? Powerhub Electrical offers 24/7 callouts and same-day service. Call 0400 332 331 for fast, honest help.">
+  <NavInner />
+  <main id="top">
+    <PageHero
+      eyebrow="24/7 rapid response"
+      title="Emergency electrician"
+      accent="St Ives"
+      sub="When you need an emergency electrician, St Ives homeowners deserve a fast answer. Backed by 25+ years' combined experience and 100+ five-star reviews."
+      crumbs={[{ label: 'Home', href: '/' }, { label: 'Services', href: '/services' }, { label: 'Emergency Electricians' }]}
+      img="/images/powerhub/services/emergency-electricians.webp"
+      badges={['24/7 callouts', 'Same-day service', 'Licensed #467291C']}
+    />
+
+    <!-- WHAT TO EXPECT -->
+    <section class="relative bg-brand-surface py-20 sm:py-28">
+      <div class="mx-auto grid max-w-7xl items-center gap-12 px-5 sm:px-8 lg:grid-cols-[1.05fr_0.95fr] lg:gap-16">
+        <div class="reveal">
+          <p class="mb-4 flex items-center gap-3 font-body text-xs font-semibold uppercase tracking-[0.3em] text-brand-muted">
+            <span class="inline-block h-px w-10 bg-brand-accent"></span> What to expect
+          </p>
+          <h2 class="font-heading text-3xl font-black uppercase leading-[1.05] tracking-[-0.01em] text-brand-text sm:text-4xl">
+            What to expect from your <span class="text-brand-secondary">St Ives emergency electrician</span>
+          </h2>
+          <p class="mt-6 font-body text-lg font-medium leading-relaxed text-brand-secondary">
+            Same-day response, obligation-free advice, and a licensed electrician who explains the fault honestly.
+          </p>
+          <p class="mt-4 font-body text-lg leading-relaxed text-brand-muted">
+            Electrical emergencies do not wait for business hours, and neither should the help you call. As your local emergency electrician, St Ives homeowners get straight answers about what went wrong, what it will cost, and how quickly it can be fixed safely.
+          </p>
+          <div class="mt-8 flex flex-col gap-4 sm:flex-row sm:items-center">
+            <a href={site.phoneHref} class="sweep-btn group relative inline-flex items-center justify-center gap-2 overflow-hidden px-7 py-4 font-heading text-base font-bold text-brand-bg" style="clip-path: polygon(6% 0, 100% 0, 94% 100%, 0 100%); background: var(--color-brand-accent);">
+              <span class="relative z-10">Call {site.phoneDisplay}</span><Bolt class="relative z-10 h-4 w-4" />
+            </a>
+            <OutlineButton href="/contact-us" class="px-7 py-4 text-base">Get a free quote</OutlineButton>
+          </div>
+        </div>
+
+        <div class="reveal relative" style="transition-delay:120ms;">
+          <div class="relative overflow-hidden border-2 border-brand-secondary/25 shadow-2xl shadow-black/60" style="clip-path: polygon(0 0, 100% 0, 100% 90%, 90% 100%, 0 100%);">
+            <img src="/images/powerhub/services/emergency-electricians.webp" alt="Kitchen lighting and cooktop wiring by Powerhub Electrical in St Ives" class="h-full w-full object-cover" loading="lazy" />
+          </div>
+          <span class="absolute -bottom-4 -right-3 h-24 w-1.5 bg-brand-accent"></span>
+        </div>
+      </div>
+    </section>
+
+    <!-- SITUATIONS -->
+    <section class="relative bg-brand-bg py-20 sm:py-28">
+      <div class="mx-auto max-w-7xl px-5 sm:px-8">
+        <div class="reveal mb-4 max-w-2xl">
+          <p class="mb-4 flex items-center gap-3 font-body text-xs font-semibold uppercase tracking-[0.3em] text-brand-muted">
+            <span class="inline-block h-px w-10 bg-brand-accent"></span> What we handle
+          </p>
+          <h2 class="font-heading text-3xl font-black uppercase leading-[1.02] tracking-[-0.01em] text-brand-text sm:text-4xl">
+            Situations our emergency <span class="text-brand-secondary">electricians handle</span>
+          </h2>
+        </div>
+        <p class="reveal mb-12 max-w-2xl font-body text-lg leading-relaxed text-brand-muted">An emergency electrician in St Ives is called out for a wide range of urgent situations, including:</p>
+        <div class="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+          {situations.map((s, i) => (
+            <article class="reveal border border-white/8 bg-brand-surface p-6 transition-colors hover:border-brand-accent/50" style={`clip-path: polygon(0 0, 100% 0, 97% 100%, 0 100%); transition-delay:${(i % 3) * 70}ms`}>
+              <span class="mb-4 inline-flex h-9 w-9 items-center justify-center bg-brand-accent/15 text-brand-accent" style="clip-path: polygon(0 0, 100% 0, 85% 100%, 0 100%);"><Bolt class="h-5 w-5" /></span>
+              <h3 class="font-heading text-lg font-black uppercase tracking-[-0.01em] text-brand-text">{s.title}</h3>
+              {s.html
+                ? <p class="mt-2 font-body text-sm leading-relaxed text-brand-muted" set:html={s.html}></p>
+                : <p class="mt-2 font-body text-sm leading-relaxed text-brand-muted">{s.desc}</p>}
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- WHY ACTING QUICKLY MATTERS -->
+    <section class="relative bg-brand-surface py-20 sm:py-28">
+      <div class="mx-auto max-w-7xl px-5 sm:px-8">
+        <div class="reveal mb-4 max-w-2xl">
+          <p class="mb-4 flex items-center gap-3 font-body text-xs font-semibold uppercase tracking-[0.3em] text-brand-muted">
+            <span class="inline-block h-px w-10 bg-brand-accent"></span> Why it matters
+          </p>
+          <h2 class="font-heading text-3xl font-black uppercase leading-[1.02] tracking-[-0.01em] text-brand-text sm:text-4xl">
+            Why acting quickly on an <span class="text-brand-secondary">electrical emergency matters</span>
+          </h2>
+        </div>
+        <p class="reveal mb-12 max-w-2xl font-body text-lg leading-relaxed text-brand-muted">Acting quickly on an electrical emergency protects more than convenience; it protects your household directly:</p>
+        <div class="grid gap-5 sm:grid-cols-2">
+          {whyMatters.map((w, i) => (
+            <article class="reveal border border-white/8 bg-brand-bg p-6 transition-colors hover:border-brand-accent/50" style={`clip-path: polygon(0 0, 100% 0, 98% 100%, 0 100%); transition-delay:${(i % 2) * 80}ms`}>
+              <span class="mb-4 inline-flex h-9 w-9 items-center justify-center bg-brand-accent/15 text-brand-accent" style="clip-path: polygon(0 0, 100% 0, 85% 100%, 0 100%);"><Bolt class="h-5 w-5" /></span>
+              <h3 class="font-heading text-lg font-black uppercase tracking-[-0.01em] text-brand-text">{w.title}</h3>
+              <p class="mt-2 font-body text-sm leading-relaxed text-brand-muted">{w.desc}</p>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- PROCESS -->
+    <section class="relative overflow-hidden bg-brand-bg py-20 sm:py-28">
+      <div class="mx-auto grid max-w-7xl items-start gap-12 px-5 sm:px-8 lg:grid-cols-[1.1fr_0.9fr] lg:gap-16">
+        <div>
+          <div class="reveal mb-4 max-w-xl">
+            <p class="mb-4 flex items-center gap-3 font-body text-xs font-semibold uppercase tracking-[0.3em] text-brand-muted">
+              <span class="inline-block h-px w-10 bg-brand-accent"></span> How we work
+            </p>
+            <h2 class="font-heading text-3xl font-black uppercase leading-[1.02] tracking-[-0.01em] text-brand-text sm:text-4xl">
+              Our emergency electrician process <span class="text-brand-secondary">for St Ives callouts</span>
+            </h2>
+          </div>
+          <p class="reveal mb-10 max-w-xl font-body text-base leading-relaxed text-brand-muted">Calling an emergency electrician in St Ives with us follows a clear, fast sequence:</p>
+          <ol class="relative space-y-8 border-l border-brand-secondary/20 pl-8">
+            {process.map((s, i) => (
+              <li class="reveal relative" style={`transition-delay: ${i * 80}ms;`}>
+                <span class="absolute -left-[42px] grid h-8 w-8 place-items-center font-heading text-xs font-black text-brand-bg" style="clip-path: polygon(20% 0, 100% 0, 80% 100%, 0 100%); background: var(--color-brand-accent);">{s.n}</span>
+                <h3 class="font-heading text-xl font-black uppercase leading-tight tracking-tight text-brand-secondary">{s.title}</h3>
+                <p class="mt-2 max-w-md font-body text-base leading-relaxed text-brand-muted">{s.desc}</p>
+              </li>
+            ))}
+          </ol>
+        </div>
+        <div class="reveal relative" style="transition-delay:120ms;">
+          <div class="relative overflow-hidden border-2 border-brand-secondary/25 shadow-2xl shadow-black/60" style="clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%, 0 8%);">
+            <img src="/images/powerhub/services/emergency-electricians-2.webp" alt="Powerhub Electrical responding to an emergency callout in St Ives" class="h-full w-full object-cover" loading="lazy" />
+            <div class="absolute inset-0 bg-gradient-to-tr from-brand-bg/50 to-transparent"></div>
+          </div>
+          <span class="absolute -bottom-4 -left-4 h-20 w-1.5 bg-brand-accent lg:h-28"></span>
+        </div>
+      </div>
+    </section>
+
+    <!-- COMMON EMERGENCIES -->
+    <section class="relative bg-brand-surface py-20 sm:py-28">
+      <div class="mx-auto max-w-7xl px-5 sm:px-8">
+        <div class="reveal mb-4 max-w-2xl">
+          <p class="mb-4 flex items-center gap-3 font-body text-xs font-semibold uppercase tracking-[0.3em] text-brand-muted">
+            <span class="inline-block h-px w-10 bg-brand-accent"></span> Recurring problems
+          </p>
+          <h2 class="font-heading text-3xl font-black uppercase leading-[1.02] tracking-[-0.01em] text-brand-text sm:text-4xl">
+            Common electrical emergencies <span class="text-brand-secondary">across St Ives</span>
+          </h2>
+        </div>
+        <p class="reveal mb-12 max-w-2xl font-body text-lg leading-relaxed text-brand-muted">St Ives properties tend to run into a specific set of recurring electrical problems, including:</p>
+        <div class="grid gap-5 sm:grid-cols-2">
+          {common.map((c, i) => (
+            <article class="reveal border border-white/8 bg-brand-bg p-6 transition-colors hover:border-brand-accent/50" style={`clip-path: polygon(0 0, 100% 0, 98% 100%, 0 100%); transition-delay:${(i % 2) * 80}ms`}>
+              <span class="mb-4 inline-flex h-9 w-9 items-center justify-center bg-brand-accent/15 text-brand-accent" style="clip-path: polygon(0 0, 100% 0, 85% 100%, 0 100%);"><Bolt class="h-5 w-5" /></span>
+              <h3 class="font-heading text-lg font-black uppercase tracking-[-0.01em] text-brand-text">{c.title}</h3>
+              <p class="mt-2 font-body text-sm leading-relaxed text-brand-muted">{c.desc}</p>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- PROPERTIES -->
+    <section class="relative bg-brand-bg py-20 sm:py-28">
+      <div class="mx-auto max-w-7xl px-5 sm:px-8">
+        <div class="reveal mb-4 max-w-2xl">
+          <p class="mb-4 flex items-center gap-3 font-body text-xs font-semibold uppercase tracking-[0.3em] text-brand-muted">
+            <span class="inline-block h-px w-10 bg-brand-accent"></span> Where we work
+          </p>
+          <h2 class="font-heading text-3xl font-black uppercase leading-[1.02] tracking-[-0.01em] text-brand-text sm:text-4xl">
+            Properties we attend <span class="text-brand-secondary">across St Ives</span>
+          </h2>
+        </div>
+        <p class="reveal mb-12 max-w-2xl font-body text-lg leading-relaxed text-brand-muted">Emergency callouts across St Ives usually fall into one of these property situations:</p>
+        <div class="grid gap-5 sm:grid-cols-3">
+          {properties.map((p, i) => (
+            <article class="reveal border border-white/8 bg-brand-surface p-6 transition-colors hover:border-brand-accent/50" style={`clip-path: polygon(0 0, 100% 0, 97% 100%, 0 100%); transition-delay:${i * 70}ms`}>
+              <span class="mb-4 inline-flex h-9 w-9 items-center justify-center bg-brand-accent/15 text-brand-accent" style="clip-path: polygon(0 0, 100% 0, 85% 100%, 0 100%);"><Bolt class="h-5 w-5" /></span>
+              <h3 class="font-heading text-lg font-black uppercase tracking-[-0.01em] text-brand-text">{p.title}</h3>
+              <p class="mt-2 font-body text-sm leading-relaxed text-brand-muted">{p.desc}</p>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- SAFETY BASICS -->
+    <section class="relative bg-brand-surface py-20 sm:py-28">
+      <div class="mx-auto max-w-4xl px-5 sm:px-8">
+        <div class="reveal mb-4">
+          <p class="mb-4 flex items-center gap-3 font-body text-xs font-semibold uppercase tracking-[0.3em] text-brand-muted">
+            <span class="inline-block h-px w-10 bg-brand-accent"></span> Safety and compliance
+          </p>
+          <h2 class="font-heading text-3xl font-black uppercase leading-[1.02] tracking-[-0.01em] text-brand-text sm:text-4xl">
+            Electrical safety basics <span class="text-brand-secondary">for St Ives homeowners</span>
+          </h2>
+        </div>
+        <p class="reveal mb-8 font-body text-lg leading-relaxed text-brand-muted">A few safety basics are worth knowing before help arrives:</p>
+        <ul class="space-y-4">
+          {safety.map((s, i) => (
+            <li class="reveal flex items-start gap-3 border border-white/8 bg-brand-bg p-5" style={`clip-path: polygon(0 0, 100% 0, 99% 100%, 0 100%); transition-delay:${(i % 5) * 50}ms`}>
+              <span class="mt-0.5 grid h-7 w-7 shrink-0 place-items-center bg-brand-accent/15 text-brand-accent" style="clip-path: polygon(0 0, 100% 0, 80% 100%, 0 100%);"><Bolt class="h-4 w-4" /></span>
+              <span class="font-body text-base leading-relaxed text-brand-text" set:html={s.html}></span>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </section>
+
+    <!-- WHY CHOOSE -->
+    <section class="relative bg-brand-bg py-20 sm:py-28">
+      <div class="mx-auto max-w-7xl px-5 sm:px-8">
+        <div class="reveal mb-12 max-w-2xl">
+          <p class="mb-4 flex items-center gap-3 font-body text-xs font-semibold uppercase tracking-[0.3em] text-brand-muted">
+            <span class="inline-block h-px w-10 bg-brand-accent"></span> Why choose us
+          </p>
+          <h2 class="font-heading text-3xl font-black uppercase leading-[1.02] tracking-[-0.01em] text-brand-text sm:text-4xl">
+            Why choose Powerhub Electrical <span class="text-brand-secondary">for an emergency</span>
+          </h2>
+          <p class="mt-4 font-body text-lg leading-relaxed text-brand-muted">Here's what genuinely sets Powerhub Electrical apart during an electrical emergency:</p>
+        </div>
+        <div class="grid gap-px overflow-hidden border border-white/5 bg-white/5 sm:grid-cols-2">
+          {whyChoose.map((p, i) => (
+            <div class="reveal group relative bg-brand-surface p-8 transition-colors hover:bg-brand-bg" style={`transition-delay: ${(i % 2) * 90}ms;`}>
+              <div class="mb-4 flex items-center justify-between">
+                <span class="font-heading text-3xl font-black tabular-nums text-brand-secondary/30 transition-colors group-hover:text-brand-accent">{p.n}</span>
+                <span class="grid h-9 w-9 place-items-center text-brand-bg" style="clip-path: polygon(0 0, 100% 0, 100% 70%, 70% 100%, 0 100%); background: var(--color-brand-secondary);"><Bolt class="h-4 w-4" /></span>
+              </div>
+              <h3 class="font-heading text-lg font-bold uppercase leading-tight tracking-tight text-brand-text">{p.title}</h3>
+              <p class="mt-2 font-body text-base leading-relaxed text-brand-muted">{p.desc}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <ServiceAreas />
+    <Testimonials />
+
+    <!-- CTA -->
+    <section class="relative overflow-hidden bg-brand-bg py-28">
+      <img src="/images/powerhub/home/cta.webp" alt="" aria-hidden="true" class="absolute inset-0 h-full w-full object-cover opacity-30" />
+      <div class="absolute inset-0" style="background: radial-gradient(circle at 30% 50%, rgba(255,106,0,0.32), transparent 55%), linear-gradient(to right, var(--color-brand-bg) 5%, rgba(23,24,27,0.7) 60%);"></div>
+      <div class="pointer-events-none absolute inset-0 opacity-[0.08]" style="background-image: linear-gradient(90deg, var(--color-brand-secondary) 1px, transparent 1px); background-size: 50px 50px;"></div>
+      <div class="relative mx-auto max-w-4xl px-5 text-center sm:px-8">
+        <p class="reveal mb-5 inline-flex items-center gap-2 border border-brand-accent/50 bg-brand-accent/10 px-4 py-1.5 font-heading text-xs font-bold uppercase tracking-widest text-brand-accent pulse-glow">
+          <Bolt class="h-3.5 w-3.5" /> 24/7 emergency callouts
+        </p>
+        <h2 class="reveal font-heading text-[clamp(2rem,5.5vw,3.4rem)] font-black uppercase leading-[1.0] tracking-[-0.01em] text-brand-text" style="transition-delay:80ms;">
+          Electrical emergency right now? <span class="text-brand-accent">Call us directly</span>
+        </h2>
+        <p class="reveal mx-auto mt-6 max-w-2xl font-body text-lg leading-relaxed text-brand-muted" style="transition-delay:160ms;">
+          If you need an emergency electrician in St Ives right now, call Powerhub Electrical directly on {site.phoneDisplay}. We prioritise same-day callouts, and every visit includes a free five-star safety inspection at no extra cost, any time you call.
+        </p>
+        <div class="reveal mt-9 flex flex-col items-center justify-center gap-4 sm:flex-row" style="transition-delay:240ms;">
+          <a href={site.phoneHref} class="sweep-btn group relative inline-flex items-center justify-center gap-2 overflow-hidden px-8 py-4 font-heading text-base font-bold text-brand-bg" style="clip-path: polygon(6% 0, 100% 0, 94% 100%, 0 100%); background: var(--color-brand-accent);">
+            <span class="relative z-10">Call {site.phoneDisplay}</span>
+            <Bolt class="relative z-10 h-4 w-4" />
+          </a>
+          <OutlineButton href="/contact-us" class="px-8 py-4 text-base">Get a Free Quote</OutlineButton>
+        </div>
+      </div>
+    </section>
+
+    <Faqs heading="Frequently asked questions" items={emergencyFaqs} bg="bg-brand-surface" />
+  </main>
+  <Footer />
+</Layout>

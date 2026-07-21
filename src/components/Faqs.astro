@@ -1,0 +1,50 @@
+---
+interface FaqItem { q: string; a: string }
+interface Props { heading?: string; sub?: string; bg?: string; items?: FaqItem[] }
+const { heading, sub, bg = 'bg-brand-surface', items } = Astro.props;
+
+export const faqs: FaqItem[] = [
+  { q: 'Do you cover emergency calls for an electrician in St Ives?', a: 'Yes, Powerhub Electrical offers 24/7 emergency callouts across St Ives, so a licensed electrician can reach your property any time power problems threaten your home or family.' },
+  { q: 'How much does an electrician visit cost in St Ives?', a: 'Every quote is obligation-free and explained upfront before work starts, and new customers save $50 on their first service booking with Powerhub Electrical, with no hidden extras added later.' },
+  { q: 'Are you licensed to work on St Ives properties?', a: 'Yes, Powerhub Electrical holds NSW electrical licence 467291C, which anyone can verify directly through the NSW Government licence register before booking any work.' },
+  { q: 'Do you offer a pensioner discount in St Ives?', a: 'Yes, pensioners across St Ives and the surrounding Ku-ring-gai suburbs receive an automatic 15 per cent discount on every booking, applied at the quoting stage without any paperwork required.' },
+  { q: 'Can you upgrade an old switchboard in an established St Ives home?', a: 'Absolutely, our electricians regularly replace outdated fuse-style switchboards in older St Ives homes with modern, safety-switch-protected boards that comply with current wiring standards.' },
+  { q: 'Do you handle full home rewiring in St Ives?', a: 'Yes, our electricians rewire established St Ives homes section by section, restoring both safety and modern capacity without requiring you to move out during the works.' },
+  { q: 'Is a free safety inspection really included?', a: 'Yes, every booking with Powerhub Electrical includes a complimentary five-star electrical safety inspection, giving you a genuine second opinion on your home\'s wiring at no extra charge.' },
+  { q: 'Will my smoke alarms meet NSW requirements?', a: 'We install and interconnect photoelectric smoke alarms that comply with current NSW legislation, replacing outdated units so every level of your St Ives home stays properly protected.' },
+  { q: 'How quickly can you respond to a fault?', a: 'Powerhub Electrical prioritises same-day service across St Ives wherever possible, and our emergency line responds quickly to power outages, tripped switchboards and other urgent electrical faults.' },
+];
+---
+<section class:list={["relative py-20 sm:py-28", bg]}>
+  <div class="mx-auto max-w-3xl px-5 sm:px-8">
+    {heading && (
+      <div class="reveal mb-12">
+        <p class="mb-4 flex items-center gap-3 font-body text-xs font-semibold uppercase tracking-[0.3em] text-brand-muted">
+          <span class="inline-block h-px w-10 bg-brand-accent"></span> FAQs
+        </p>
+        <h2 class="font-heading text-3xl font-black uppercase leading-[1.02] tracking-[-0.01em] text-brand-text sm:text-4xl">{heading}</h2>
+        {sub && <p class="mt-4 font-body text-lg leading-relaxed text-brand-muted">{sub}</p>}
+      </div>
+    )}
+    <div class="space-y-4">
+      {(items ?? faqs).map((f, i) => (
+        <details class="faq reveal group border border-white/8 bg-brand-bg" style={`clip-path: polygon(0 0, 100% 0, 99% 100%, 0 100%); transition-delay:${(i % 4) * 50}ms`}>
+          <summary class="flex cursor-pointer list-none items-center justify-between gap-4 p-5 font-heading text-base font-bold uppercase tracking-[-0.01em] text-brand-text transition-colors hover:text-brand-secondary sm:text-lg">
+            {f.q}
+            <span class="faq-icon grid h-7 w-7 shrink-0 place-items-center bg-brand-accent/15 text-brand-accent transition-transform duration-300" style="clip-path: polygon(0 0, 100% 0, 80% 100%, 0 100%);">
+              <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+            </span>
+          </summary>
+          <div class="border-t border-white/8 px-5 py-5">
+            <p class="font-body text-base leading-relaxed text-brand-muted">{f.a}</p>
+          </div>
+        </details>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .faq[open] .faq-icon { transform: rotate(45deg); }
+  .faq summary::-webkit-details-marker { display: none; }
+</style>
