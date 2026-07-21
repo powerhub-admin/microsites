@@ -44,7 +44,7 @@ export const POST: APIRoute = async ({ request, locals }) => {
     (import.meta as any).env?.[key] ??
     (typeof process !== 'undefined' ? process.env?.[key] : undefined);
 
-  const apiKey = pick('RESEND_API_KEY');
+  const apiKey = pick('RESEND_API_KEY') || pick('powerhub-resend-key');
   const to = pick('CONTACT_TO') || 'mark@plumbelecmarketing.com';
   const from = pick('RESEND_FROM') || 'Powerhub Electrical Website <onboarding@resend.dev>';
 
