@@ -11,6 +11,7 @@ const page: ServicePageData = {
   supporting: "A level 2 electrician in Revesby handles the network side of a property's power connection. Brian Ho personally oversees every job.",
   badges: ['Fixed pricing', 'Obligation-free quotes', 'Licensed #467291C'],
   heroImg: '/images/powerhub/services/level-2-electrician.webp',
+  introImg: '/images/powerhub/services/Our-committment-to-success.webp',
   navLabel: 'Level 2 Electrician',
 
   introHeading: 'Level 2 Electrical Work for Revesby Properties',

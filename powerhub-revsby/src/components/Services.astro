@@ -44,7 +44,14 @@ const homeBlurb: Record<string, string> = {
 // Each card shows the same featured image as its individual service page
 // (the long-form page's heroImg), falling back to the catalogue image so the
 // grid never duplicates an image that a page has since replaced.
-const cardImg = (slug: string, fallback: string) => servicePages[slug]?.heroImg ?? fallback;
+// A few cards use a bespoke featured image that differs from the page hero.
+const cardImgOverride: Record<string, string> = {
+  'level-2-electrician': '/images/powerhub/services/Our-committment-to-success.webp',
+  'smoke-alarm-installation': '/images/powerhub/services/smoke-alarm-installation-2.webp',
+  'emergency-electricians': '/images/powerhub/services/emergency-repairs.webp',
+};
+const cardImg = (slug: string, fallback: string) =>
+  cardImgOverride[slug] ?? servicePages[slug]?.heroImg ?? fallback;
 ---
 <section id="services" class="relative bg-brand-bg py-24">
   <div class="pointer-events-none absolute inset-0 opacity-[0.05]" style="background-image: linear-gradient(90deg, var(--color-brand-secondary) 1px, transparent 1px); background-size: 60px 60px;"></div>
