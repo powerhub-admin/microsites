@@ -10,7 +10,7 @@ const page: ServicePageData = {
   h1: 'Level 2 Electrician St Ives',
   supporting: 'Accredited Level 2 electrician working across St Ives, handling network connections. Backed by 100+ five-star reviews and a licensed electrician.',
   badges: ['Genuine Level 2 accreditation', '24/7 availability', 'Licensed #467291C'],
-  heroImg: '/images/powerhub/services/level-2-electrician.webp',
+  heroImg: '/images/powerhub/services/Our-committment-to-success.webp',
   navLabel: 'Level 2 Electrician',
 
   introHeading: 'Need Work Done Between Your Home and the Street?',

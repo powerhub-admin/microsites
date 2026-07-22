@@ -29,7 +29,7 @@ export const services: Service[] = [
     navLabel: 'Emergency Electricians',
     title: 'Emergency electrician St Ives',
     tagline: '24/7 rapid response',
-    img: '/images/powerhub/services/emergency-electricians.webp',
+    img: '/images/powerhub/services/emergency-repairs.webp',
     img2: '/images/powerhub/services/emergency-electricians-2.webp',
     alt: 'Powerhub Electrical emergency electrician work in a St Ives home',
     blurb: 'When power drops out unexpectedly in an established St Ives home, our team responds quickly to trace the fault, restore supply safely, and explain exactly what actually caused the outage.',
