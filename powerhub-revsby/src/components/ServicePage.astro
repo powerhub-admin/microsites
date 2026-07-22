@@ -93,7 +93,7 @@ const introImg = page.introImg || page.heroImg;
         <p class="reveal mb-12 max-w-2xl font-body text-lg leading-relaxed text-brand-muted">{page.coreLeadIn}</p>
         <div class="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
           {page.coreItems.map((s, i) => (
-            <article class="reveal border border-white/8 bg-brand-surface p-6 transition-colors hover:border-brand-accent/50" style={`clip-path: polygon(0 0, 100% 0, 97% 100%, 0 100%); transition-delay:${(i % 3) * 70}ms`}>
+            <article class="reveal border border-white/8 bg-brand-surface p-6 transition-colors hover:border-brand-accent/50" style={`clip-path: polygon(0 0, 100% 0, 100% 90%, 90% 100%, 0 100%); transition-delay:${(i % 3) * 70}ms`}>
               <span class="mb-4 inline-flex h-9 w-9 items-center justify-center bg-brand-accent/15 text-brand-accent" style="clip-path: polygon(0 0, 100% 0, 85% 100%, 0 100%);"><Bolt class="h-5 w-5" /></span>
               <h3 class="font-heading text-lg font-black uppercase tracking-[-0.01em] text-brand-text">{s.title}</h3>
               {s.html ? <p class="mt-2 font-body text-sm leading-relaxed text-brand-muted" set:html={s.html}></p> : <p class="mt-2 font-body text-sm leading-relaxed text-brand-muted">{s.desc}</p>}
@@ -117,7 +117,7 @@ const introImg = page.introImg || page.heroImg;
         <p class="reveal mb-12 max-w-2xl font-body text-lg leading-relaxed text-brand-muted">{page.whyLeadIn}</p>
         <div class="grid gap-5 sm:grid-cols-2">
           {page.whyItems.map((s, i) => (
-            <article class="reveal border border-white/8 bg-brand-bg p-6 transition-colors hover:border-brand-accent/50" style={`clip-path: polygon(0 0, 100% 0, 98% 100%, 0 100%); transition-delay:${(i % 2) * 80}ms`}>
+            <article class="reveal border border-white/8 bg-brand-bg p-6 transition-colors hover:border-brand-accent/50" style={`clip-path: polygon(0 0, 100% 0, 100% 90%, 90% 100%, 0 100%); transition-delay:${(i % 2) * 80}ms`}>
               <span class="mb-4 inline-flex h-9 w-9 items-center justify-center bg-brand-accent/15 text-brand-accent" style="clip-path: polygon(0 0, 100% 0, 85% 100%, 0 100%);"><Bolt class="h-5 w-5" /></span>
               <h3 class="font-heading text-lg font-black uppercase tracking-[-0.01em] text-brand-text">{s.title}</h3>
               {s.html ? <p class="mt-2 font-body text-sm leading-relaxed text-brand-muted" set:html={s.html}></p> : <p class="mt-2 font-body text-sm leading-relaxed text-brand-muted">{s.desc}</p>}
@@ -176,7 +176,7 @@ const introImg = page.introImg || page.heroImg;
         <p class="reveal mb-12 max-w-2xl font-body text-lg leading-relaxed text-brand-muted">{page.problemsLeadIn}</p>
         <div class="grid gap-5 sm:grid-cols-2">
           {page.problemsItems.map((s, i) => (
-            <article class="reveal border border-white/8 bg-brand-bg p-6 transition-colors hover:border-brand-accent/50" style={`clip-path: polygon(0 0, 100% 0, 98% 100%, 0 100%); transition-delay:${(i % 2) * 80}ms`}>
+            <article class="reveal border border-white/8 bg-brand-bg p-6 transition-colors hover:border-brand-accent/50" style={`clip-path: polygon(0 0, 100% 0, 100% 90%, 90% 100%, 0 100%); transition-delay:${(i % 2) * 80}ms`}>
               <span class="mb-4 inline-flex h-9 w-9 items-center justify-center bg-brand-accent/15 text-brand-accent" style="clip-path: polygon(0 0, 100% 0, 85% 100%, 0 100%);"><Bolt class="h-5 w-5" /></span>
               <h3 class="font-heading text-lg font-black uppercase tracking-[-0.01em] text-brand-text">{s.title}</h3>
               {s.html ? <p class="mt-2 font-body text-sm leading-relaxed text-brand-muted" set:html={s.html}></p> : <p class="mt-2 font-body text-sm leading-relaxed text-brand-muted">{s.desc}</p>}
@@ -200,7 +200,7 @@ const introImg = page.introImg || page.heroImg;
           <p class="reveal mb-12 max-w-2xl font-body text-lg leading-relaxed text-brand-muted">{page.propertyLeadIn}</p>
           <div class="grid gap-5 sm:grid-cols-3">
             {page.propertyItems.map((s, i) => (
-              <article class="reveal border border-white/8 bg-brand-surface p-6 transition-colors hover:border-brand-accent/50" style={`clip-path: polygon(0 0, 100% 0, 97% 100%, 0 100%); transition-delay:${i * 70}ms`}>
+              <article class="reveal border border-white/8 bg-brand-surface p-6 transition-colors hover:border-brand-accent/50" style={`clip-path: polygon(0 0, 100% 0, 100% 90%, 90% 100%, 0 100%); transition-delay:${i * 70}ms`}>
                 <span class="mb-4 inline-flex h-9 w-9 items-center justify-center bg-brand-accent/15 text-brand-accent" style="clip-path: polygon(0 0, 100% 0, 85% 100%, 0 100%);"><Bolt class="h-5 w-5" /></span>
                 <h3 class="font-heading text-lg font-black uppercase tracking-[-0.01em] text-brand-text">{s.title}</h3>
                 {s.html ? <p class="mt-2 font-body text-sm leading-relaxed text-brand-muted" set:html={s.html}></p> : <p class="mt-2 font-body text-sm leading-relaxed text-brand-muted">{s.desc}</p>}
